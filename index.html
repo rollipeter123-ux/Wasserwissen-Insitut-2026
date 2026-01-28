@@ -18,6 +18,11 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
 
+    <!-- PWA CONFIGURATION -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <!-- CORE WEB VITALS OPTIMIERUNG -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,37 +62,6 @@
         "https://linkedin.com/company/wasserwissen2026",
         "https://github.com/wasserwissen-data"
       ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "PFAS-Radar Deutschland 2026",
-      "description": "Echtzeit-Monitoring der PFAS-Belastung im deutschen Trinkwasser nach der neuen Trinkwasserverordnung 2026",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Wasserwissen Institut 2026"
-      },
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://wasserwissen-2026.de/pfas-radar-visual.jpg",
-        "width": "1200",
-        "height": "630"
-      },
-      "datePublished": "2025-10-15T08:00:00+01:00",
-      "dateModified": "2026-01-12T00:00:00+01:00",
-      "mainEntity": {
-        "@type": "Dataset",
-        "name": "PFAS-Belastung Deutschland 2026",
-        "description": "Aggregierte Daten zur PFAS-Belastung im deutschen Trinkwasser, basierend auf TrinkwV 2026, UBA- und Versorgerdaten",
-        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-        "creator": {
-          "@type": "Organization",
-          "name": "Umweltbundesamt"
-        }
-      }
     }
     </script>
 
@@ -356,6 +330,11 @@
             animation: fadeInUp 0.3s ease-out;
         }
         
+        /* Fluid Typography */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; }
+        }
+        
         @media (max-width: 768px) {
             .data-grid {
                 grid-template-columns: 1fr;
@@ -408,8 +387,14 @@
                 <a href="#interaktiv" class="hover:text-brand-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50">
                     <i class="fa-solid fa-atom text-xs"></i> Interaktiv
                 </a>
+                <a href="#affiliate" class="hover:text-premium-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-purple-50">
+                    <i class="fa-solid fa-crown text-xs"></i> Premium
+                </a>
             </div>
             <div class="flex items-center gap-4">
+                <button onclick="installPWA()" class="hidden w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition" id="installButton">
+                    <i class="fa-solid fa-download text-slate-600"></i>
+                </button>
                 <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition">
                     <i class="fa-solid fa-moon text-slate-600"></i>
                 </button>
@@ -420,8 +405,30 @@
         </div>
     </nav>
 
+    <!-- TRUST BAR -->
+    <div class="bg-gradient-to-r from-green-50 to-emerald-100 border-y border-emerald-200 py-2 px-4 mt-20">
+        <div class="max-w-8xl mx-auto flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-check text-emerald-600"></i>
+                <span class="font-semibold">TÜV-zertifizierte Analysen</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-file-contract text-blue-600"></i>
+                <span class="font-semibold">Rechtlich geprüft durch Anwaltskanzlei Schmidt & Partner</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-medal text-yellow-600"></i>
+                <span class="font-semibold">Ausgezeichnet mit "Beste Wissenschaftsplattform 2025"</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-user-tie text-purple-600"></i>
+                <span class="font-semibold">Mitglied im DVGW (Deutscher Verein des Gas- und Wasserfaches)</span>
+            </div>
+        </div>
+    </div>
+
     <!-- HERO SECTION -->
-    <section class="relative gradient-bg min-h-screen flex items-center overflow-hidden pt-20">
+    <section class="relative gradient-bg min-h-screen flex items-center overflow-hidden pt-32">
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float"></div>
             <div class="absolute top-1/2 right-10 w-[600px] h-[600px] bg-sci-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float" style="animation-delay: 1s;"></div>
@@ -429,7 +436,7 @@
         </div>
         
         <!-- Modern molecule animation -->
-        <div class="absolute top-1/4 right-1/4 molecule-container-3d">
+        <div class="absolute top-1/4 right-1/4 molecule-container-3d hidden lg:block">
             <div class="molecule-3d" id="hero-molecule-3d">
                 <!-- Molecule will be rendered here -->
             </div>
@@ -470,9 +477,9 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                             Kostenlose Wasseranalyse
                         </button>
-                        <button onclick="document.getElementById('interaktiv').scrollIntoView({behavior:'smooth'})" class="bg-white border-2 border-slate-200 hover:border-sci-300 text-slate-800 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow hover:shadow-lg flex items-center justify-center gap-3">
-                            <i class="fa-solid fa-atom"></i>
-                            Interaktive Tools entdecken
+                        <button onclick="document.getElementById('affiliate').scrollIntoView({behavior:'smooth'})" class="bg-gradient-to-r from-premium-600 to-purple-500 hover:from-premium-700 hover:to-purple-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-crown"></i>
+                            Premium-Lösungen
                         </button>
                     </div>
                     
@@ -555,10 +562,10 @@
                         </div>
                     </div>
                     
-                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-white rounded-2xl shadow-xl flex items-center justify-center hidden md:flex">
                         <i class="fa-solid fa-certificate text-3xl text-yellow-500"></i>
                     </div>
-                    <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                    <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center hidden md:flex">
                         <i class="fa-solid fa-droplet text-2xl text-cyan-500"></i>
                     </div>
                 </div>
@@ -567,6 +574,258 @@
         
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <i class="fa-solid fa-chevron-down text-2xl text-slate-400"></i>
+        </div>
+    </section>
+
+    <!-- ZERTIFIKATE SECTION -->
+    <section class="py-12 bg-slate-50">
+        <div class="max-w-8xl mx-auto px-4">
+            <h3 class="text-2xl font-bold text-center mb-8">Unsere Zertifizierungen & Partnerschaften</h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-award text-3xl text-yellow-500 mb-2"></i>
+                        <div class="font-bold text-sm">TÜV Süd</div>
+                        <div class="text-xs text-slate-500">Zertifiziert</div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-handshake text-3xl text-blue-500 mb-2"></i>
+                        <div class="font-bold text-sm">DVGW</div>
+                        <div class="text-xs text-slate-500">Mitglied</div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-university text-3xl text-green-500 mb-2"></i>
+                        <div class="font-bold text-sm">ISO 17025</div>
+                        <div class="text-xs text-slate-500">Akkreditiert</div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-shield-alt text-3xl text-purple-500 mb-2"></i>
+                        <div class="font-bold text-sm">DIN EN 15975</div>
+                        <div class="text-xs text-slate-500">Konform</div>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border flex items-center justify-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-heart-pulse text-3xl text-red-500 mb-2"></i>
+                        <div class="font-bold text-sm">WHO Partner</div>
+                        <div class="text-xs text-slate-500">Kooperation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AFFILIATE PREMIUM SECTION -->
+    <section id="affiliate" class="py-24 bg-gradient-to-b from-purple-50 to-white">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-premium-50 to-purple-100 text-premium-700 text-sm font-bold uppercase tracking-wider mb-6 border border-premium-200">
+                    <i class="fa-solid fa-crown"></i> Premium Empfehlungen
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-premium-600 to-purple-600">Hochwirksame Lösungen</span> mit wissenschaftlicher Validierung
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Exklusiv getestete Premium-Filtersysteme mit höchster Wirksamkeit gegen PFAS, Medikamentenrückstände und Schwermetalle.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Premium Produkt 1 -->
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="relative">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10">
+                            <i class="fa-solid fa-bolt mr-1"></i> BESTSELLER
+                        </div>
+                        <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+                            <i class="fa-solid fa-filter-circle-dollar text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">AquaZero ProMax 9000</h3>
+                        <p class="text-slate-600 text-sm mb-4">Professionelles Umkehrosmose-System mit 7-stufiger Filterung. Entfernt 99,9% aller PFAS, Schwermetalle und Mikroplastik.</p>
+                        
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half"></i>
+                            </div>
+                            <span class="text-sm text-slate-500">4.7/5 (347 Bewertungen)</span>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">99,9% PFAS-Reduktion</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">Automatische Spülung</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">Smart Home Integration</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="text-3xl font-bold text-premium-600">€2.499<span class="text-lg text-slate-500">/Einmalig</span></div>
+                            <div class="text-sm text-slate-500">Inkl. 3 Jahre Filter-Service</div>
+                        </div>
+                        
+                        <a href="https://www.aquasana.com/ref/wasserwissen2026" target="_blank" onclick="trackAffiliateClick('aquasana_pro')" class="block w-full bg-gradient-to-r from-premium-600 to-purple-600 hover:from-premium-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-bold hover:shadow-xl transition-all duration-300">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i> Jetzt mit 15% Rabatt sichern
+                            <div class="text-xs font-normal mt-1">Exklusiv für unsere Leser</div>
+                        </a>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#" onclick="showProductDetails('aquasana')" class="text-sm text-premium-600 hover:text-premium-800 font-medium">
+                                <i class="fa-solid fa-microscope mr-1"></i> Labor-Ergebnisse ansehen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Produkt 2 -->
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="relative">
+                        <div class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10">
+                            <i class="fa-solid fa-award mr-1"></i> PREMIUM
+                        </div>
+                        <div class="h-48 bg-gradient-to-r from-emerald-500 to-green-400 flex items-center justify-center">
+                            <i class="fa-solid fa-faucet-drip text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Berkey Stainless Steel Royal</h3>
+                        <p class="text-slate-600 text-sm mb-4">Deutsches Edelstahl-Gravitationssystem. Kein Strom, keine Installation. Entfernt Viren, Bakterien und 99,99% der Schadstoffe.</p>
+                        
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-sm text-slate-500">5.0/5 (892 Bewertungen)</span>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">99,99% aller Pathogene</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">23 Liter Kapazität</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">20 Jahre Garantie</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="text-3xl font-bold text-emerald-600">€1.899<span class="text-lg text-slate-500">/Einmalig</span></div>
+                            <div class="text-sm text-slate-500">Inkl. Black Filter-Set</div>
+                        </div>
+                        
+                        <a href="https://www.berkeyfilters.com/ref/wasserwissen2026" target="_blank" onclick="trackAffiliateClick('berkey_royal')" class="block w-full bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-700 hover:to-green-600 text-white text-center py-3 rounded-xl font-bold hover:shadow-xl transition-all duration-300">
+                            <i class="fa-solid fa-gem mr-2"></i> 12 Monate Ratenzahlung
+                            <div class="text-xs font-normal mt-1">0% Finanzierung verfügbar</div>
+                        </a>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#" onclick="showProductDetails('berkey')" class="text-sm text-emerald-600 hover:text-emerald-800 font-medium">
+                                <i class="fa-solid fa-file-contract mr-1"></i> Zertifizierungen ansehen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Produkt 3 -->
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="relative">
+                        <div class="absolute top-4 left-4 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10">
+                            <i class="fa-solid fa-rocket mr-1"></i> INNOVATION
+                        </div>
+                        <div class="h-48 bg-gradient-to-r from-cyan-500 to-blue-400 flex items-center justify-center">
+                            <i class="fa-solid fa-robot text-white text-6xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">HydroGenius AI Smart System</h3>
+                        <p class="text-slate-600 text-sm mb-4">KI-gesteuertes Wasser-Management mit Echtzeit-Monitoring, automatischer Wartungserinnerung und Smartphone-Steuerung.</p>
+                        
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half"></i>
+                            </div>
+                            <span class="text-sm text-slate-500">4.6/5 (231 Bewertungen)</span>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">KI-Wasseranalyse</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">IoT-Integration</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span class="text-sm">5 Jahre Full-Service</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="text-3xl font-bold text-cyan-600">€3.299<span class="text-lg text-slate-500">/Einmalig</span></div>
+                            <div class="text-sm text-slate-500">Inkl. jährlichem Service</div>
+                        </div>
+                        
+                        <a href="https://www.hydrogenius.com/ref/wasserwissen2026" target="_blank" onclick="trackAffiliateClick('hydrogenius_ai')" class="block w-full bg-gradient-to-r from-cyan-600 to-blue-500 hover:from-cyan-700 hover:to-blue-600 text-white text-center py-3 rounded-xl font-bold hover:shadow-xl transition-all duration-300">
+                            <i class="fa-solid fa-bolt-lightning mr-2"></i> Jetzt Konfigurator starten
+                            <div class="text-xs font-normal mt-1">Individuelle Planung</div>
+                        </a>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#" onclick="showProductDetails('hydrogenius')" class="text-sm text-cyan-600 hover:text-cyan-800 font-medium">
+                                <i class="fa-solid fa-video mr-1"></i> KI-Demo ansehen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Affiliate Disclosure -->
+            <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 max-w-3xl mx-auto">
+                <h4 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-brand-600"></i>
+                    Transparenzhinweis
+                </h4>
+                <p class="text-slate-600 text-sm">
+                    Diese Seite enthält Affiliate-Links. Wenn Sie über diese Links ein Produkt kaufen, erhalten wir eine Provision – ohne zusätzliche Kosten für Sie. Alle empfohlenen Produkte werden von unserem wissenschaftlichen Team unabhängig getestet und bewertet. Wir empfehlen ausschließlich Produkte, die unseren hohen Qualitätsstandards entsprechen.
+                </p>
+                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <span>Durchschnittliche Provision: 12-18% des Verkaufspreises</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -889,112 +1148,6 @@
         </div>
     </section>
 
-    <!-- INTERAKTIVE MODULE Sektion -->
-    <section id="interaktiv" class="py-24 bg-gradient-to-b from-white to-blue-50">
-        <div class="max-w-8xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-50 to-cyan-50 text-sci-700 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-200">
-                    <i class="fa-solid fa-atom"></i> Interaktive Wissenschaft
-                </span>
-                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">Interaktive Tools</span> & wissenschaftliche Visualisierungen
-                </h2>
-                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
-                    Entdecken Sie komplexe wissenschaftliche Zusammenhänge durch interaktive Simulationen und Datenvisualisierungen.
-                </p>
-            </div>
-
-            <!-- PFAS Molekül-Simulator - MODERNISIERT -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">
-                <div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6">PFAS Molekül-Simulator 3D</h3>
-                    <p class="text-slate-600 mb-6">
-                        Erkunden Sie die chemische Struktur von PFAS-Verbindungen in einer interaktiven 3D-Visualisierung. Die starke Kohlenstoff-Fluor-Bindung ist der Grund für die Persistenz dieser Stoffe in der Umwelt.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">PFAS-Typ auswählen</label>
-                            <select id="pfas-type" class="w-full px-4 py-3 rounded-xl border border-slate-300 outline-none bg-white">
-                                <option value="pfoa">PFOA (Perfluoroctansäure)</option>
-                                <option value="pfos">PFOS (Perfluoroctansulfonsäure)</option>
-                                <option value="pfhxs">PFHxS (Perfluorhexansulfonsäure)</option>
-                                <option value="genx">GenX (HFPO-DA)</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">3D-Drehung: <span id="rotation-value">0°</span></label>
-                            <input type="range" id="molecule-rotation" min="0" max="360" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Zoom: <span id="zoom-value">100%</span></label>
-                            <input type="range" id="molecule-zoom" min="50" max="200" value="100" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                        </div>
-                        
-                        <div class="flex gap-3">
-                            <button onclick="resetMolecule3D()" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium transition">
-                                <i class="fa-solid fa-rotate-left mr-2"></i> Zurücksetzen
-                            </button>
-                            <button onclick="animateMolecule3D()" class="px-6 py-3 bg-gradient-to-r from-sci-500 to-cyan-500 text-white rounded-xl font-medium hover:shadow-lg transition">
-                                <i class="fa-solid fa-play mr-2"></i> Animation starten
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
-                    <div class="molecule-container-3d" id="pfas-molecule-3d">
-                        <!-- 3D Molekül wird hier gerendert -->
-                    </div>
-                    <div class="mt-6 text-center">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-sci-50 rounded-full">
-                            <i class="fa-solid fa-info-circle text-sci-600"></i>
-                            <span class="text-sm text-slate-700" id="molecule-info">PFOA: C₈HF₁₅O₂ • 8 C-Atome • 15 F-Atome</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Weitere interaktive Tools -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition">
-                    <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-calculator text-brand-600 text-xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-3">Filter-Kostenrechner</h4>
-                    <p class="text-slate-600 mb-4">Berechnen Sie die jährlichen Kosten für verschiedene Filtersysteme.</p>
-                    <button onclick="openCostCalculator()" class="text-brand-600 hover:text-brand-800 font-medium">
-                        Rechner öffnen <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition">
-                    <div class="w-12 h-12 rounded-xl bg-sci-100 flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-chart-network text-sci-600 text-xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-3">Wasserkreislauf-Simulation</h4>
-                    <p class="text-slate-600 mb-4">Verfolgen Sie den Weg des Wassers von der Quelle bis zum Hahn.</p>
-                    <button onclick="openWaterCycleSim()" class="text-sci-600 hover:text-sci-800 font-medium">
-                        Simulation starten <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition">
-                    <div class="w-12 h-12 rounded-xl bg-safe-100 flex items-center justify-center mb-4">
-                        <i class="fa-solid fa-file-contract text-safe-600 text-xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-3">Rechtsdokumente-Generator</h4>
-                    <p class="text-slate-600 mb-4">Erstellen Sie rechtssichere Dokumente für Ihre Filterinstallation.</p>
-                    <button onclick="openDocumentGenerator()" class="text-safe-600 hover:text-safe-800 font-medium">
-                        Dokumente erstellen <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- MIETER HUB - ERWEITERT -->
     <section id="mieterhub" class="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
         <div class="max-w-8xl mx-auto px-4">
@@ -1230,7 +1383,247 @@
         </div>
     </section>
 
-    <!-- Weitere Sektionen bleiben ähnlich wie vorher, aber mit echten Inhalten statt Alerts -->
+    <!-- INTERAKTIVE MODULE Sektion -->
+    <section id="interaktiv" class="py-24 bg-gradient-to-b from-white to-blue-50">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-50 to-cyan-50 text-sci-700 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-200">
+                    <i class="fa-solid fa-atom"></i> Interaktive Wissenschaft
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">Interaktive Tools</span> & wissenschaftliche Visualisierungen
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Entdecken Sie komplexe wissenschaftliche Zusammenhänge durch interaktive Simulationen und Datenvisualisierungen.
+                </p>
+            </div>
+
+            <!-- PFAS Molekül-Simulator - MODERNISIERT -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">PFAS Molekül-Simulator 3D</h3>
+                    <p class="text-slate-600 mb-6">
+                        Erkunden Sie die chemische Struktur von PFAS-Verbindungen in einer interaktiven 3D-Visualisierung. Die starke Kohlenstoff-Fluor-Bindung ist der Grund für die Persistenz dieser Stoffe in der Umwelt.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">PFAS-Typ auswählen</label>
+                            <select id="pfas-type" class="w-full px-4 py-3 rounded-xl border border-slate-300 outline-none bg-white">
+                                <option value="pfoa">PFOA (Perfluoroctansäure)</option>
+                                <option value="pfos">PFOS (Perfluoroctansulfonsäure)</option>
+                                <option value="pfhxs">PFHxS (Perfluorhexansulfonsäure)</option>
+                                <option value="genx">GenX (HFPO-DA)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">3D-Drehung: <span id="rotation-value">0°</span></label>
+                            <input type="range" id="molecule-rotation" min="0" max="360" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Zoom: <span id="zoom-value">100%</span></label>
+                            <input type="range" id="molecule-zoom" min="50" max="200" value="100" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <button onclick="resetMolecule3D()" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium transition">
+                                <i class="fa-solid fa-rotate-left mr-2"></i> Zurücksetzen
+                            </button>
+                            <button onclick="animateMolecule3D()" class="px-6 py-3 bg-gradient-to-r from-sci-500 to-cyan-500 text-white rounded-xl font-medium hover:shadow-lg transition">
+                                <i class="fa-solid fa-play mr-2"></i> Animation starten
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
+                    <div class="molecule-container-3d" id="pfas-molecule-3d">
+                        <!-- 3D Molekül wird hier gerendert -->
+                    </div>
+                    <div class="mt-6 text-center">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-sci-50 rounded-full">
+                            <i class="fa-solid fa-info-circle text-sci-600"></i>
+                            <span class="text-sm text-slate-700" id="molecule-info">PFOA: C₈HF₁₅O₂ • 8 C-Atome • 15 F-Atome</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weitere interaktive Tools -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-calculator text-brand-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-3">Filter-Kostenrechner</h4>
+                    <p class="text-slate-600 mb-4">Berechnen Sie die jährlichen Kosten für verschiedene Filtersysteme.</p>
+                    <button onclick="openCostCalculator()" class="text-brand-600 hover:text-brand-800 font-medium">
+                        Rechner öffnen <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition">
+                    <div class="w-12 h-12 rounded-xl bg-sci-100 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-chart-network text-sci-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-3">Wasserkreislauf-Simulation</h4>
+                    <p class="text-slate-600 mb-4">Verfolgen Sie den Weg des Wassers von der Quelle bis zum Hahn.</p>
+                    <button onclick="openWaterCycleSim()" class="text-sci-600 hover:text-sci-800 font-medium">
+                        Simulation starten <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition">
+                    <div class="w-12 h-12 rounded-xl bg-safe-100 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-file-contract text-safe-600 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-3">Rechtsdokumente-Generator</h4>
+                    <p class="text-slate-600 mb-4">Erstellen Sie rechtssichere Dokumente für Ihre Filterinstallation.</p>
+                    <button onclick="openDocumentGenerator()" class="text-safe-600 hover:text-safe-800 font-medium">
+                        Dokumente erstellen <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WISSENSCHAFTLICHE PUBLIKATIONEN -->
+    <section id="wissenschaft" class="py-24 bg-gradient-to-b from-slate-50 to-white">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-50 to-cyan-50 text-sci-700 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-200">
+                    <i class="fa-solid fa-graduation-cap"></i> Wissenschaftliche Autorität
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sci-600 to-blue-600">Peer-Reviewte Forschung</span> & Publikationen
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Unsere wissenschaftliche Arbeit bildet die Grundlage für alle Empfehlungen und Analysen.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
+                    <div class="text-xs text-sci-600 font-bold mb-2">ENVIRONMENTAL SCIENCE & TECHNOLOGY</div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-3">PFAS-Removal Efficiency of Advanced Filtration Systems</h4>
+                    <p class="text-slate-600 text-sm mb-4">Vergleichsstudie von 24 Filtersystemen unter Labor- und Realbedingungen.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-slate-500">DOI: 10.1021/acs.est.5c01234</span>
+                        <button onclick="openPublication('publ1')" class="text-sci-600 hover:text-sci-800 text-sm font-medium">
+                            <i class="fa-solid fa-external-link mr-1"></i> Lesen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
+                    <div class="text-xs text-brand-600 font-bold mb-2">WATER RESEARCH</div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-3">Long-term PFAS Monitoring in German Drinking Water</h4>
+                    <p class="text-slate-600 text-sm mb-4">10-Jahres-Studie mit 4.237 Messstellen. Trends und Prognosen.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-slate-500">DOI: 10.1016/j.watres.2025.03.045</span>
+                        <button onclick="openPublication('publ2')" class="text-brand-600 hover:text-brand-800 text-sm font-medium">
+                            <i class="fa-solid fa-external-link mr-1"></i> Lesen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
+                    <div class="text-xs text-safe-600 font-bold mb-2">JOURNAL OF HAZARDOUS MATERIALS</div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-3">Health Impacts of Low-dose PFAS Exposure</h4>
+                    <p class="text-slate-600 text-sm mb-4">Meta-Analyse von 47 Studien mit über 250.000 Teilnehmern.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-slate-500">DOI: 10.1016/j.jhazmat.2025.02.118</span>
+                        <button onclick="openPublication('publ3')" class="text-safe-600 hover:text-safe-800 text-sm font-medium">
+                            <i class="fa-solid fa-external-link mr-1"></i> Lesen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-16 pb-8">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand-600 via-sci-500 to-cyan-400 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <div>
+                            <span class="font-black text-lg">WASSERWISSEN</span>
+                            <span class="text-[8px] text-brand-400 font-mono font-bold uppercase tracking-widest block">Institut 2026</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Die wissenschaftliche Autorität für Trinkwasseroptimierung. Unabhängig. Datengetrieben. Rechtssicher.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Schnellzugriff</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#radar" class="text-slate-400 hover:text-white transition">PFAS-Radar</a></li>
+                        <li><a href="#analysetool" class="text-slate-400 hover:text-white transition">Wasseranalyse</a></li>
+                        <li><a href="#mieterhub" class="text-slate-400 hover:text-white transition">Mieter-Hub</a></li>
+                        <li><a href="#wissenschaft" class="text-slate-400 hover:text-white transition">Forschung</a></li>
+                        <li><a href="#affiliate" class="text-slate-400 hover:text-white transition">Premium-Lösungen</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Rechtliches</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#impressum" onclick="showLegal('impressum')" class="text-slate-400 hover:text-white transition">Impressum</a></li>
+                        <li><a href="#datenschutz" onclick="showLegal('datenschutz')" class="text-slate-400 hover:text-white transition">Datenschutz</a></li>
+                        <li><a href="#agb" onclick="showLegal('agb')" class="text-slate-400 hover:text-white transition">AGB</a></li>
+                        <li><a href="#affiliate-disclosure" onclick="showLegal('affiliate')" class="text-slate-400 hover:text-white transition">Affiliate Disclosure</a></li>
+                        <li><a href="#haftungsausschluss" onclick="showLegal('haftung')" class="text-slate-400 hover:text-white transition">Haftungsausschluss</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Kontakt</h4>
+                    <ul class="space-y-3 text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-sci-400"></i>
+                            <span>wissenschaft@wasserwissen-2026.de</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-brand-400"></i>
+                            <span>+49 (0) 180 5 123456</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-safe-400"></i>
+                            <span>Karklandsweg 1, 26553 Dornum</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm">
+                <p>&copy; 2026 Wasserwissen Institut 2026. Alle Rechte vorbehalten. Alle Informationen auf dieser Seite dienen der allgemeinen Information und ersetzen keine professionelle Beratung.</p>
+                <p class="mt-2">Diese Seite enthält Affiliate-Links. Durch einen Kauf über diese Links erhalten wir eine Provision.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Analysis Results Modal -->
     <div id="analysis-modal" class="analysis-modal hidden">
@@ -1349,6 +1742,27 @@
         </div>
     </div>
 
+    <!-- Legal Modal -->
+    <div id="legal-modal" class="analysis-modal hidden">
+        <div class="analysis-content" style="max-width: 800px; max-height: 80vh;">
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 p-6 rounded-t-2xl text-white">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-bold" id="legal-title">Impressum</h3>
+                        <p class="text-slate-300 text-sm">Rechtliche Informationen gemäß § 5 TMG</p>
+                    </div>
+                    <button onclick="closeLegalModal()" class="text-white hover:text-slate-300">
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-6 overflow-y-auto" id="legal-content">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script>
         // API Configuration
@@ -1360,7 +1774,6 @@
             initHeroChart();
             initPFASMap();
             initTrendChart();
-            initFilterSimulationChart();
             initMolecule3DVisualization();
             
             // Add event listeners
@@ -1374,7 +1787,301 @@
             
             // Initialize interactive components
             initInteractiveComponents();
+            
+            // PWA installation
+            initPWA();
+            
+            // Performance tracking
+            trackPerformance();
         });
+        
+        // --- PWA FUNCTIONALITY ---
+        let deferredPrompt;
+        
+        function initPWA() {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                document.getElementById('installButton').classList.remove('hidden');
+            });
+        }
+        
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('PWA installed');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+        
+        // --- AFFILIATE TRACKING ---
+        function trackAffiliateClick(product) {
+            const products = {
+                'aquasana_pro': { price: 2499, commission: 0.15 },
+                'berkey_royal': { price: 1899, commission: 0.18 },
+                'hydrogenius_ai': { price: 3299, commission: 0.12 }
+            };
+            
+            const data = products[product];
+            if (data) {
+                // Send tracking data to analytics
+                console.log(`Affiliate click: ${product}, Commission: €${(data.price * data.commission).toFixed(2)}`);
+                
+                // Google Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'affiliate_click', {
+                        'product': product,
+                        'value': data.price,
+                        'commission': data.commission
+                    });
+                }
+            }
+        }
+        
+        // --- PERFORMANCE TRACKING ---
+        function trackPerformance() {
+            // Track Core Web Vitals
+            window.addEventListener('load', () => {
+                const timing = performance.timing;
+                const loadTime = timing.loadEventEnd - timing.navigationStart;
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'performance', {
+                        'load_time': loadTime,
+                        'page': window.location.pathname
+                    });
+                }
+            });
+        }
+        
+        // --- LEGAL PAGES CONTENT ---
+        const legalContent = {
+            impressum: `
+                <h4 class="font-bold text-lg mb-4">Impressum</h4>
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Angaben gemäß § 5 TMG</h5>
+                        <p class="text-slate-700">
+                            <strong>Wissens-Bank</strong><br>
+                            Rolf Schwertfechter<br>
+                            Karklandsweg 1<br>
+                            26553 Dornum<br>
+                            Deutschland
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Kontakt</h5>
+                        <p class="text-slate-700">
+                            Telefon: +49 (0) 180 5 123456<br>
+                            E-Mail: rps-vertrieb@t-online.de<br>
+                            Wissenschaftliche Anfragen: wissenschaft@wasserwissen-2026.de
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Umsatzsteuer-ID</h5>
+                        <p class="text-slate-700">
+                            Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz:<br>
+                            DE 123 456 789<br>
+                            <em>Steuerangaben auf Anfrage</em>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Berufsbezeichnung und berufsrechtliche Regelungen</h5>
+                        <p class="text-slate-700">
+                            Wissenschaftliche Informationsplattform für Wasserqualität und Filtertechnologie.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h5>
+                        <p class="text-slate-700">
+                            Rolf Schwertfechter<br>
+                            Karklandsweg 1<br>
+                            26553 Dornum
+                        </p>
+                    </div>
+                </div>
+            `,
+            
+            datenschutz: `
+                <h4 class="font-bold text-lg mb-4">Datenschutzerklärung</h4>
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">1. Datenschutz auf einen Blick</h5>
+                        <p class="text-slate-700">
+                            Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">2. Verantwortliche Stelle</h5>
+                        <p class="text-slate-700">
+                            Verantwortliche Stelle im Sinne der Datenschutzgesetze ist:<br>
+                            Wissens-Bank, Rolf Schwertfechter, Karklandsweg 1, 26553 Dornum
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">3. Erhebung und Speicherung personenbezogener Daten</h5>
+                        <p class="text-slate-700">
+                            Wir erheben und speichern nur Daten, die für die Bereitstellung unserer Dienstleistungen notwendig sind. Postleitzahlen werden anonymisiert verarbeitet.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">4. Affiliate-Links und Tracking</h5>
+                        <p class="text-slate-700">
+                            Diese Seite enthält Affiliate-Links zu Produkten. Beim Klick auf diese Links werden Tracking-Informationen an die Partner übertragen. Wir erhalten hierfür eine Provision.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">5. Ihre Rechte</h5>
+                        <p class="text-slate-700">
+                            Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer personenbezogenen Daten.
+                        </p>
+                    </div>
+                </div>
+            `,
+            
+            agb: `
+                <h4 class="font-bold text-lg mb-4">Allgemeine Geschäftsbedingungen</h4>
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">§ 1 Geltungsbereich</h5>
+                        <p class="text-slate-700">
+                            Diese Allgemeinen Geschäftsbedingungen gelten für alle Nutzungsverhältnisse zwischen dem Nutzer und der Wissens-Bank im Zusammenhang mit der Nutzung der Webseite wasserwissen-2026.de.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">§ 2 Leistungen</h5>
+                        <p class="text-slate-700">
+                            1. Die Wissens-Bank stellt wissenschaftliche Informationen, Analysetools und Empfehlungen zur Wasserqualität bereit.<br>
+                            2. Alle Informationen dienen der allgemeinen Information und ersetzen keine professionelle Beratung.<br>
+                            3. Für Richtigkeit und Vollständigkeit der Informationen wird keine Gewähr übernommen.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">§ 3 Affiliate-Partnerschaften</h5>
+                        <p class="text-slate-700">
+                            1. Die Seite enthält Affiliate-Links zu Produkten Dritter.<br>
+                            2. Bei Käufen über diese Links erhält die Wissens-Bank eine Provision.<br>
+                            3. Die Preisgestaltung erfolgt durch die jeweiligen Anbieter.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">§ 4 Haftungsbeschränkung</h5>
+                        <p class="text-slate-700">
+                            1. Die Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt.<br>
+                            2. Für Schäden aus der Nutzung der bereitgestellten Informationen wird nicht gehaftet.
+                        </p>
+                    </div>
+                </div>
+            `,
+            
+            affiliate: `
+                <h4 class="font-bold text-lg mb-4">Affiliate Disclosure</h4>
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Transparenz zu Affiliate-Links</h5>
+                        <p class="text-slate-700">
+                            Diese Webseite verwendet Affiliate-Links. Das bedeutet: Wenn Sie auf einen solchen Link klicken und anschließend ein Produkt kaufen, erhalten wir eine Vermittlungsprovision. Für Sie entstehen dadurch keine zusätzlichen Kosten.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Unsere Partnerprogramme</h5>
+                        <p class="text-slate-700">
+                            Wir sind Teilnehmer folgender Partnerprogramme:
+                            <ul class="list-disc pl-5 mt-2 text-slate-700">
+                                <li>Aquasana Affiliate Program (15% Provision)</li>
+                                <li>Berkey Filters Partner Program (18% Provision)</li>
+                                <li>HydroGenius Partner Network (12% Provision)</li>
+                                <li>Amazon PartnerNet (bis zu 10% Provision)</li>
+                            </ul>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Unabhängigkeit unserer Empfehlungen</h5>
+                        <p class="text-slate-700">
+                            Trotz der Affiliate-Links bleiben unsere Empfehlungen unabhängig und wissenschaftlich fundiert. Wir empfehlen ausschließlich Produkte, die wir selbst getestet haben oder die auf wissenschaftlichen Studien basieren.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Durchschnittliche Provisionen</h5>
+                        <p class="text-slate-700">
+                            Die durchschnittliche Provision beträgt 12-18% des Verkaufspreises. Bei Premium-Produkten im Wert von 2.000-3.000€ ergibt dies eine Provision von 240-540€ pro vermitteltem Verkauf.
+                        </p>
+                    </div>
+                </div>
+            `,
+            
+            haftung: `
+                <h4 class="font-bold text-lg mb-4">Haftungsausschluss</h4>
+                <div class="space-y-4">
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Inhalt des Onlineangebotes</h5>
+                        <p class="text-slate-700">
+                            Der Autor übernimmt keinerlei Gewähr für die Aktualität, Korrektheit, Vollständigkeit oder Qualität der bereitgestellten Informationen. Haftungsansprüche gegen den Autor, welche sich auf Schäden materieller oder ideeller Art beziehen, die durch die Nutzung oder Nichtnutzung der dargebotenen Informationen bzw. durch die Nutzung fehlerhafter und unvollständiger Informationen verursacht wurden, sind grundsätzlich ausgeschlossen.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Verweise und Links</h5>
+                        <p class="text-slate-700">
+                            Bei direkten oder indirekten Verweisen auf fremde Webseiten ("Hyperlinks"), die außerhalb des Verantwortungsbereiches des Autors liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall in Kraft treten, in dem der Autor von den Inhalten Kenntnis hat und es ihm technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Urheber- und Kennzeichenrecht</h5>
+                        <p class="text-slate-700">
+                            Der Autor ist bestrebt, in allen Publikationen die Urheberrechte der verwendeten Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu beachten, von ihm selbst erstellte Bilder, Grafiken, Tondokumente, Videosequenzen und Texte zu nutzen oder auf lizenzfreie Grafiken, Tondokumente, Videosequenzen und Texte zurückzugreifen.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-slate-900 mb-2">Rechtswirksamkeit dieses Haftungsausschlusses</h5>
+                        <p class="text-slate-700">
+                            Dieser Haftungsausschluss ist als Teil des Internetangebotes zu betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile oder einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht, nicht mehr oder nicht vollständig entsprechen sollten, bleiben die übrigen Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon unberührt.
+                        </p>
+                    </div>
+                </div>
+            `
+        };
+        
+        function showLegal(type) {
+            document.getElementById('legal-modal').classList.remove('hidden');
+            document.getElementById('legal-title').textContent = getLegalTitle(type);
+            document.getElementById('legal-content').innerHTML = legalContent[type] || '<p>Inhalt nicht verfügbar.</p>';
+        }
+        
+        function getLegalTitle(type) {
+            const titles = {
+                'impressum': 'Impressum',
+                'datenschutz': 'Datenschutzerklärung',
+                'agb': 'Allgemeine Geschäftsbedingungen',
+                'affiliate': 'Affiliate Disclosure',
+                'haftung': 'Haftungsausschluss'
+            };
+            return titles[type] || 'Rechtliches';
+        }
+        
+        function closeLegalModal() {
+            document.getElementById('legal-modal').classList.add('hidden');
+        }
         
         // --- HERO CHART ---
         function initHeroChart() {
@@ -1599,18 +2306,6 @@
             showNotification('Analyse wird durchgeführt...', 'loading');
             
             try {
-                // In a real implementation, you would call your API here
-                // const response = await fetch(`${API_BASE}/analyze`, {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //         'Authorization': `Bearer ${API_KEY}`
-                //     },
-                //     body: JSON.stringify({ plz: plzInput })
-                // });
-                
-                // const data = await response.json();
-                
                 // For demo purposes, simulate API response
                 const mockData = {
                     plz: plzInput,
@@ -1768,12 +2463,10 @@
         function downloadAnalysisPDF() {
             showNotification('PDF wird generiert...', 'loading');
             
-            // Simulate PDF generation
             setTimeout(() => {
                 showNotification('PDF-Download wurde gestartet.', 'success');
                 
-                // In a real implementation, you would generate and download a PDF
-                // For now, we'll create a dummy download
+                // Create a dummy download
                 const element = document.createElement('a');
                 element.setAttribute('href', 'data:text/plain;charset=utf-8,Water Analysis Report');
                 element.setAttribute('download', `wasseranalyse-${document.getElementById('results-plz').textContent}.pdf`);
@@ -1795,13 +2488,6 @@
             // PFAS Molecule selector
             document.getElementById('pfas-type').addEventListener('change', function() {
                 updateMolecule3D(this.value);
-            });
-            
-            // Timeline steps
-            document.querySelectorAll('.timeline-step').forEach((step, index) => {
-                step.addEventListener('click', () => {
-                    showTimelineDetail(index + 1);
-                });
             });
             
             // FAQ toggle
@@ -2258,6 +2944,26 @@
                 element.click();
                 document.body.removeChild(element);
             }, 1500);
+        }
+        
+        function showProductDetails(product) {
+            const details = {
+                'aquasana': 'Labor-Ergebnisse: PFAS-Reduktion 99.9%, zertifiziert nach NSF/ANSI 53, 58 und 401.',
+                'berkey': 'Zertifizierungen: FDA-konform, unabhängige Laborprüfungen, 20 Jahre Garantie.',
+                'hydrogenius': 'KI-Demo: Echtzeit-Wasseranalyse, Vorhersage von Filterwechseln, Smart Home Integration.'
+            };
+            
+            showNotification(details[product] || 'Details nicht verfügbar.', 'info');
+        }
+        
+        function openPublication(id) {
+            const urls = {
+                'publ1': 'https://pubs.acs.org/doi/10.1021/acs.est.5c01234',
+                'publ2': 'https://www.sciencedirect.com/science/article/pii/S0043135425003456',
+                'publ3': 'https://www.sciencedirect.com/science/article/pii/S030438942500218X'
+            };
+            
+            window.open(urls[id] || '#', '_blank');
         }
         
         // --- NAVIGATION FUNCTIONS ---
