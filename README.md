@@ -2,8 +2,11 @@ Wasserwissen Institut 2026
 Wissenschaftliche Autorität für Trinkwasseroptimierung nach TrinkwV 2026
 
 https://img.shields.io/badge/Status-Produktiv-brightgreen
+
 https://img.shields.io/badge/License-MIT-blue
+
 https://img.shields.io/badge/Core%2520Web%2520Vitals-100%252F100-green
+
 https://img.shields.io/badge/SEO%2520Score-100%252F100-blueviolet
 
 📋 Inhaltsverzeichnis
