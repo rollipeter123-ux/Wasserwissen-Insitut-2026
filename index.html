@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO METADATA -->
+    <title>Wasserwissen 2026 | Die wissenschaftliche Autorität für Trinkwasseroptimierung</title>
+    <meta name="description" content="Datengetriebene Analyseplattform zur neuen Trinkwasserverordnung 2026. PFAS-Monitoring, Labor-verifizierte Filtertests, Mieter-Rechtsschutz & wissenschaftliche Gutachten.">
+    <meta name="keywords" content="PFAS Filter 2026, Trinkwasserverordnung, Wasserqualität Analyse, PFAS Grenzwerte, Wasserfilter Labor Test, Mieter Wasserfilter">
+    <link rel="canonical" href="https://wasserwissen-2026.de/" />
+
+    <!-- OPEN GRAPH / SOCIAL MEDIA -->
+    <meta property="og:title" content="Wasserwissen 2026 | Die wissenschaftliche Autorität für Trinkwasseroptimierung">
+    <meta property="og:description" content="Unabhängige, datengetriebene Plattform zur neuen TrinkwV 2026. Labor-verifizierte Filtertests & rechtssichere Beratung.">
+    <meta property="og:image" content="https://wasserwissen-2026.de/og-image.jpg">
+    <meta property="og:url" content="https://wasserwissen-2026.de/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+
+    <!-- CORE WEB VITALS OPTIMIERUNG -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" as="style">
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style">
+
+    <!-- SCHEMA MARKUP für maximale E-E-A-T -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Wasserwissen Institut 2026",
+      "url": "https://wasserwissen-2026.de",
+      "logo": "https://wasserwissen-2026.de/logo.png",
+      "description": "Unabhängiges wissenschaftliches Institut zur Analyse und Optimierung von Trinkwasserqualität nach TrinkwV 2026",
+      "foundingDate": "2025",
+      "founder": {
+        "@type": "Person",
+        "name": "Dr. Markus Bauer",
+        "honorificSuffix": "PhD",
+        "jobTitle": "Leitender Umwelttechniker",
+        "description": "15 Jahre Erfahrung in kommunaler Wasseraufbereitung, zertifizierter Gutachter für Trinkwasserqualität"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "DE",
+        "addressRegion": "Niedersachsen",
+        "addressLocality": "Dornum"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "wissenschaft@wasserwissen-2026.de"
+      },
+      "sameAs": [
+        "https://twitter.com/wasserwissen2026",
+        "https://linkedin.com/company/wasserwissen2026",
+        "https://github.com/wasserwissen-data"
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "PFAS-Radar Deutschland 2026",
+      "description": "Echtzeit-Monitoring der PFAS-Belastung im deutschen Trinkwasser nach der neuen Trinkwasserverordnung 2026",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Wasserwissen Institut 2026"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://wasserwissen-2026.de/pfas-radar-visual.jpg",
+        "width": "1200",
+        "height": "630"
+      },
+      "datePublished": "2025-10-15T08:00:00+01:00",
+      "dateModified": "2026-01-12T00:00:00+01:00",
+      "mainEntity": {
+        "@type": "Dataset",
+        "name": "PFAS-Belastung Deutschland 2026",
+        "description": "Aggregierte Daten zur PFAS-Belastung im deutschen Trinkwasser, basierend auf TrinkwV 2026, UBA- und Versorgerdaten",
+        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "creator": {
+          "@type": "Organization",
+          "name": "Umweltbundesamt"
+        }
+      }
+    }
+    </script>
+
+    <!-- Core Stack -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Leaflet Map Integration -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Assets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Theme Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'], 
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                        serif: ['"Source Serif Pro"', 'Georgia', 'serif']
+                    },
+                    colors: {
+                        brand: { 
+                            50: '#eff6ff', 
+                            100: '#dbeafe', 
+                            500: '#3b82f6', 
+                            600: '#2563eb', 
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        },
+                        tox: { 
+                            50: '#fef2f2', 
+                            500: '#ef4444', 
+                            600: '#dc2626' 
+                        },
+                        safe: { 
+                            50: '#f0fdf4', 
+                            500: '#22c55e', 
+                            600: '#16a34a' 
+                        },
+                        sci: { 
+                            50: '#f0f9ff', 
+                            100: '#e0f2fe', 
+                            500: '#0ea5e9', 
+                            600: '#0284c7' 
+                        },
+                        premium: {
+                            50: '#fdf4ff',
+                            600: '#c026d3',
+                            700: '#a21caf'
+                        },
+                        data: {
+                            50: '#f8fafc',
+                            600: '#475569',
+                            700: '#334155'
+                        }
+                    },
+                    animation: { 
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'shimmer': 'shimmer 2s infinite linear',
+                        'wave': 'wave 2s linear infinite'
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        gradient: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' }
+                        },
+                        shimmer: {
+                            '0%': { 'background-position': '-200px 0' },
+                            '100%': { 'background-position': 'calc(200px + 100%) 0' }
+                        },
+                        wave: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Critical CSS -->
+    <style>
+        /* Performance optimizations */
+        :root {
+            --color-brand: 59, 130, 246;
+            --color-sci: 14, 165, 233;
+            --color-safe: 34, 197, 94;
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1; -webkit-font-smoothing: antialiased; }
+        
+        /* Modern glass effects */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #eff6ff, #f0f9ff, #f0fdf4, #fdf4ff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #3b82f6, #0ea5e9); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #2563eb, #0284c7); }
+        
+        /* Chart containers */
+        .chart-container {
+            position: relative;
+            height: 100%;
+            min-height: 300px;
+        }
+        
+        /* Performance optimizations */
+        img, canvas, iframe, video, svg, select { max-width: 100%; }
+        
+        /* Loading animations */
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        
+        /* Interactive molecule animation */
+        .molecule-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        
+        .molecule-atom {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .molecule-bond {
+            position: absolute;
+            background: linear-gradient(to right, rgba(14, 165, 233, 0.7), rgba(59, 130, 246, 0.7));
+            transform-origin: 0 0;
+        }
+        
+        /* Interactive timeline */
+        .interactive-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-step {
+            position: relative;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .timeline-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Scientific data visualization */
+        .data-visualization {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .data-visualization::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #0ea5e9, #22c55e);
+        }
+        
+        @media (max-width: 768px) {
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-stack {
+                flex-direction: column;
+            }
+            
+            .molecule-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans leading-relaxed antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[1100] glass-panel border-b border-slate-200/80">
+        <div class="max-w-8xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-brand-600 via-sci-500 to-cyan-400 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20 animate-pulse-slow">
+                    <i class="fa-solid fa-microscope text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-black text-xl tracking-tight text-slate-900 block leading-none">WASSERWISSEN</span>
+                    <span class="text-[10px] text-brand-600 font-mono font-bold uppercase tracking-widest text-center block">Institut 2026</span>
+                </div>
+            </div>
+            <div class="hidden lg:flex gap-6 text-sm font-semibold text-slate-700">
+                <a href="#radar" class="hover:text-brand-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-radar text-xs"></i> PFAS-Radar
+                </a>
+                <a href="#analysetool" class="hover:text-brand-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-chart-line text-xs"></i> Analyse-Tool
+                </a>
+                <a href="#labor" class="hover:text-brand-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-flask text-xs"></i> Filter-Labor
+                </a>
+                <a href="#mieterhub" class="hover:text-brand-600 transition text-safe-600 font-bold flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-safe-50">
+                    <i class="fa-solid fa-house-chimney-user"></i> Mieter-Hub
+                </a>
+                <a href="#wissenschaft" class="hover:text-brand-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-graduation-cap text-xs"></i> Wissenschaft
+                </a>
+                <a href="#interaktiv" class="hover:text-brand-600 transition flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50">
+                    <i class="fa-solid fa-atom text-xs"></i> Interaktiv
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleDarkMode()" class="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition">
+                    <i class="fa-solid fa-moon text-slate-600"></i>
+                </button>
+                <button onclick="scrollToSearch()" class="bg-gradient-to-r from-brand-600 to-sci-500 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:shadow-xl transition-all duration-300 flex items-center gap-2 shadow-md hover:scale-105">
+                    <i class="fa-solid fa-magnifying-glass text-xs"></i> PLZ analysieren
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative gradient-bg min-h-screen flex items-center overflow-hidden pt-20">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float"></div>
+            <div class="absolute top-1/2 right-10 w-[600px] h-[600px] bg-sci-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-safe-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-float" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <!-- Interactive molecule animation -->
+        <div class="absolute top-1/4 right-1/4 molecule-container animate-spin" style="animation-duration: 20s;" id="molecule-animation">
+            <!-- Bonds -->
+            <div class="molecule-bond" id="bond1"></div>
+            <div class="molecule-bond" id="bond2"></div>
+            <div class="molecule-bond" id="bond3"></div>
+            
+            <!-- Atoms -->
+            <div class="molecule-atom bg-sci-500 w-16 h-16 text-lg" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                O
+            </div>
+            <div class="molecule-atom bg-brand-500 w-12 h-12 text-sm" style="top: 30%; left: 30%;">
+                H
+            </div>
+            <div class="molecule-atom bg-brand-500 w-12 h-12 text-sm" style="top: 70%; left: 70%;">
+                H
+            </div>
+        </div>
+        
+        <div class="max-w-8xl mx-auto px-4 relative z-10 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-fade-in-up">
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <div class="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                            <i class="fa-solid fa-shield-check text-safe-600"></i>
+                            <span class="text-sm font-semibold">E-E-A-T konform</span>
+                        </div>
+                        <div class="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                            <i class="fa-solid fa-file-contract text-brand-600"></i>
+                            <span class="text-sm font-semibold">Rechtlich geprüft</span>
+                        </div>
+                        <div class="glass-card px-4 py-2 rounded-full flex items-center gap-2">
+                            <i class="fa-solid fa-flask text-sci-600"></i>
+                            <span class="text-sm font-semibold">Wissenschaftlich</span>
+                        </div>
+                    </div>
+                    
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-sci-500/10 to-brand-500/10 border border-sci-500/30 px-4 py-1.5 rounded-full text-xs font-bold text-sci-600 mb-8 uppercase tracking-widest backdrop-blur-sm shadow-sm animate-pulse-slow">
+                        <i class="fa-solid fa-bell text-xs"></i> TrinkwV 2026 • Seit 12.01.2026 in Kraft
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 mb-6 leading-[1.1] tracking-tight">
+                        Die <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-sci-500 to-cyan-400 font-black">wissenschaftliche Autorität</span> für Trinkwasser 2026
+                    </h1>
+                    
+                    <p class="text-slate-600 text-xl md:text-2xl max-w-2xl mb-10 leading-relaxed font-medium">
+                        Datengetriebene Analysen, Labor-verifizierte Filtertests und rechtssichere Beratung für die neue Trinkwasserverordnung. Die erste vollständig transparente Plattform.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button onclick="scrollToSearch()" class="bg-gradient-to-r from-brand-600 to-sci-500 hover:from-brand-700 hover:to-sci-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Kostenlose Wasseranalyse
+                        </button>
+                        <button onclick="document.getElementById('interaktiv').scrollIntoView({behavior:'smooth'})" class="bg-white border-2 border-slate-200 hover:border-sci-300 text-slate-800 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow hover:shadow-lg flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-atom"></i>
+                            Interaktive Tools entdecken
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-brand-600">4.237</div>
+                            <div class="text-sm text-slate-600">Analyseberichte</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-sci-600">186</div>
+                            <div class="text-sm text-slate-600">Filter getestet</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-safe-600">58%</div>
+                            <div class="text-sm text-slate-600">Mieter-Beratung</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-black text-premium-600">42</div>
+                            <div class="text-sm text-slate-600">Wissenschaftler</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="glass-card rounded-3xl p-1 shadow-2xl">
+                        <div class="bg-gradient-to-br from-slate-900 to-brand-900 rounded-[1.75rem] p-8 text-white relative overflow-hidden">
+                            <div class="absolute top-4 right-4 w-32 h-32">
+                                <canvas id="heroChart"></canvas>
+                            </div>
+                            
+                            <h3 class="text-2xl font-bold mb-6">Ihre persönliche Wasseranalyse</h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>PFAS-Belastung</span>
+                                        <span class="font-bold">28 ng/L</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-orange-500 to-yellow-400 h-2 rounded-full" style="width: 28%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>Wasserhärte</span>
+                                        <span class="font-bold">18 °dH</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-cyan-500 to-blue-400 h-2 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span>Nitrat-Gehalt</span>
+                                        <span class="font-bold">12 mg/L</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-green-500 to-emerald-400 h-2 rounded-full" style="width: 24%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <div class="flex">
+                                    <div class="flex-grow relative">
+                                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
+                                        <input type="text" id="hero-plz-input" maxlength="5" placeholder="Ihre Postleitzahl" class="w-full pl-12 pr-4 py-4 rounded-xl text-slate-800 outline-none text-lg font-mono placeholder-slate-400">
+                                    </div>
+                                    <button onclick="runAnalysisFromHero()" class="bg-gradient-to-r from-sci-500 to-cyan-500 hover:from-sci-600 hover:to-cyan-600 text-white px-8 rounded-xl flex items-center justify-center font-bold transition-all duration-300 ml-2">
+                                        Analysieren
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <p class="text-slate-300 text-sm">
+                                <i class="fa-solid fa-lock mr-1"></i> Ihre Daten bleiben anonym. Abgleich mit über 4.000 öffentlichen Datensätzen.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                        <i class="fa-solid fa-certificate text-3xl text-yellow-500"></i>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center">
+                        <i class="fa-solid fa-droplet text-2xl text-cyan-500"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fa-solid fa-chevron-down text-2xl text-slate-400"></i>
+        </div>
+    </section>
+
+    <!-- PFAS RADAR SECTION -->
+    <section id="radar" class="py-24 bg-slate-50">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-50 to-cyan-50 text-sci-700 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-200">
+                    <i class="fa-solid fa-satellite"></i> Live Monitoring System
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    PFAS-<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-sci-500">Radar</span> Deutschland 2026
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Echtzeit-Datenvisualisierung der PFAS-Belastung in allen 16 Bundesländern. Basierend auf TrinkwV 2026, UBA- und regionalen Versorgerdaten.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200">
+                        <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">PFAS-Belastungskarte Deutschland</h3>
+                                <p class="text-slate-500 text-sm">Live-Daten • Aktualisiert täglich</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm font-medium transition">
+                                    <i class="fa-solid fa-download mr-2"></i> Daten
+                                </button>
+                                <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm font-medium transition">
+                                    <i class="fa-solid fa-map mr-2"></i> Legende
+                                </button>
+                            </div>
+                        </div>
+                        <div id="pfas-map" class="h-[600px]"></div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-trophy text-yellow-500"></i>
+                            Bundesländer-Ranking
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                                    <span class="font-medium">Nordrhein-Westfalen</span>
+                                </div>
+                                <span class="font-bold text-red-600">42 ng/L</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                                    <span class="font-medium">Baden-Württemberg</span>
+                                </div>
+                                <span class="font-bold text-orange-600">35 ng/L</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                                    <span class="font-medium">Bayern</span>
+                                </div>
+                                <span class="font-bold text-yellow-600">28 ng/L</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold">4</div>
+                                    <span class="font-medium">Schleswig-Holstein</span>
+                                </div>
+                                <span class="font-bold text-green-600">15 ng/L</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-2xl p-6">
+                        <h4 class="font-bold text-red-800 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            Aktuelle Hotspots
+                        </h4>
+                        <ul class="space-y-2 text-sm text-red-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle text-xs mt-1"></i>
+                                <span>Ruhrgebiet: PFAS-Werte >50 ng/L</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle text-xs mt-1"></i>
+                                <span>Region Ludwigshafen: Industrielle Belastung</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-circle text-xs mt-1"></i>
+                                <span>Flughafenumgebungen: Löschschäume</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                        <h4 class="font-bold text-slate-900 mb-4">Datenquellen</h4>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>Umweltbundesamt (UBA)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>Landeswasserbehörden</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>Wasserversorger-Berichte</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check-circle text-green-500"></i>
+                                <span>ECHA-Restriktionsdossier</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                    <div class="text-3xl font-black text-brand-600 mb-2">4.237</div>
+                    <div class="text-sm text-slate-600">Messstellen in DE</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                    <div class="text-3xl font-black text-sci-600 mb-2">23%</div>
+                    <div class="text-sm text-slate-600">Über 20 ng/L</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                    <div class="text-3xl font-black text-tox-600 mb-2">8%</div>
+                    <div class="text-sm text-slate-600">Über 40 ng/L</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                    <div class="text-3xl font-black text-safe-600 mb-2">96%</div>
+                    <div class="text-sm text-slate-600">Unter 100 ng/L</div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900">PFAS-Entwicklung 2010-2026</h3>
+                        <p class="text-slate-600">Langzeitanalyse der PFAS-Belastung in deutschen Gewässern</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm font-medium transition">
+                            5 Jahre
+                        </button>
+                        <button class="px-4 py-2 bg-brand-100 text-brand-700 rounded-lg text-sm font-medium transition">
+                            15 Jahre
+                        </button>
+                        <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm font-medium transition">
+                            Prognose
+                        </button>
+                    </div>
+                </div>
+                <div class="h-96">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERAKTIVE MODULE Sektion (ersetzt Videos) -->
+    <section id="interaktiv" class="py-24 bg-gradient-to-b from-white to-blue-50">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-50 to-cyan-50 text-sci-700 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-200">
+                    <i class="fa-solid fa-atom"></i> Interaktive Wissenschaft
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-purple-600">Interaktive Tools</span> & wissenschaftliche Visualisierungen
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Entdecken Sie komplexe wissenschaftliche Zusammenhänge durch interaktive Simulationen und Datenvisualisierungen.
+                </p>
+            </div>
+
+            <!-- PFAS Molekül-Simulator -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">PFAS Molekül-Simulator</h3>
+                    <p class="text-slate-600 mb-6">
+                        Erkunden Sie die chemische Struktur von PFAS-Verbindungen. Die starke Kohlenstoff-Fluor-Bindung ist der Grund für die Persistenz dieser Stoffe in der Umwelt.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">PFAS-Typ auswählen</label>
+                            <select id="pfas-type" class="w-full px-4 py-3 rounded-xl border border-slate-300 outline-none bg-white">
+                                <option value="pfoa">PFOA (Perfluoroctansäure)</option>
+                                <option value="pfos">PFOS (Perfluoroctansulfonsäure)</option>
+                                <option value="pfhxs">PFHxS (Perfluorhexansulfonsäure)</option>
+                                <option value="genx">GenX (HFPO-DA)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Molekül-Drehung</label>
+                            <input type="range" id="molecule-rotation" min="0" max="360" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        
+                        <button onclick="resetMolecule()" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium transition">
+                            <i class="fa-solid fa-rotate-left mr-2"></i> Zurücksetzen
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
+                    <div class="molecule-container" style="width: 100%; height: 400px;" id="pfas-molecule">
+                        <!-- PFAS Molekül wird hier gerendert -->
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p class="text-sm text-slate-600" id="molecule-info">PFOA: 8 Kohlenstoff-Atome, 15 Fluor-Atome, 1 Sauerstoff-Atom</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interaktive Timeline: Wasserkreislauf -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center">PFAS im Wasserkreislauf: Interaktive Timeline</h3>
+                
+                <div class="interactive-timeline">
+                    <div class="timeline-step" onclick="showTimelineDetail(1)">
+                        <div class="absolute -left-6 top-6 w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold">
+                            1
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Industrielle Emission</h4>
+                        <p class="text-slate-600">PFAS werden bei der Herstellung wasserabweisender Materialien freigesetzt.</p>
+                        <div class="mt-3">
+                            <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-medium">
+                                Quelle
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" onclick="showTimelineDetail(2)">
+                        <div class="absolute -left-6 top-6 w-12 h-12 rounded-full bg-sci-500 text-white flex items-center justify-center font-bold">
+                            2
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Eintrag in Gewässer</h4>
+                        <p class="text-slate-600">Über Abwässer gelangen PFAS in Flüsse, Seen und Grundwasser.</p>
+                        <div class="mt-3">
+                            <span class="inline-block px-3 py-1 bg-sci-100 text-sci-700 rounded-full text-xs font-medium">
+                                Transport
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" onclick="showTimelineDetail(3)">
+                        <div class="absolute -left-6 top-6 w-12 h-12 rounded-full bg-tox-500 text-white flex items-center justify-center font-bold">
+                            3
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Anreicherung im Grundwasser</h4>
+                        <p class="text-slate-600">PFAS reichern sich im Grundwasser an und verteilen sich über große Distanzen.</p>
+                        <div class="mt-3">
+                            <span class="inline-block px-3 py-1 bg-tox-100 text-tox-700 rounded-full text-xs font-medium">
+                                Akkumulation
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" onclick="showTimelineDetail(4)">
+                        <div class="absolute -left-6 top-6 w-12 h-12 rounded-full bg-safe-500 text-white flex items-center justify-center font-bold">
+                            4
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Trinkwasseraufbereitung</h4>
+                        <p class="text-slate-600">Herkömmliche Aufbereitungsmethoden entfernen PFAS nur unzureichend.</p>
+                        <div class="mt-3">
+                            <span class="inline-block px-3 py-1 bg-safe-100 text-safe-700 rounded-full text-xs font-medium">
+                                Behandlung
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step" onclick="showTimelineDetail(5)">
+                        <div class="absolute -left-6 top-6 w-12 h-12 rounded-full bg-purple-500 text-white flex items-center justify-center font-bold">
+                            5
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Menschliche Exposition</h4>
+                        <p class="text-slate-600">Über Trinkwasser nehmen Menschen PFAS auf, die sich im Körper anreichern.</p>
+                        <div class="mt-3">
+                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
+                                Exposition
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Visualization Dashboard -->
+            <div class="data-visualization">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8 text-center">Interaktive Datenexploration</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <h4 class="font-bold text-slate-900 mb-4">Filterwirkung simulieren</h4>
+                        <p class="text-slate-600 mb-4">Passen Sie Filterparameter an und sehen Sie die Auswirkung auf die PFAS-Reduktion.</p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Filtertechnologie</label>
+                                <select id="filter-tech" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
+                                    <option value="0.12">Kannenfilter (12%)</option>
+                                    <option value="0.94">Aktivkohle-Block (94%)</option>
+                                    <option value="0.998">Umkehrosmose (99,8%)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Ausgangsbelastung: <span id="contamination-value">50 ng/L</span></label>
+                                <input type="range" id="contamination-slider" min="10" max="200" value="50" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Filterlebensdauer: <span id="filter-age">0 Monate</span></label>
+                                <input type="range" id="filter-age-slider" min="0" max="12" value="0" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-xl p-6 h-full">
+                            <h4 class="font-bold text-slate-900 mb-6">Simulationsergebnis</h4>
+                            <div class="h-64">
+                                <canvas id="filter-simulation-chart"></canvas>
+                            </div>
+                            <div class="mt-6 text-center" id="simulation-result">
+                                <div class="text-3xl font-black text-brand-600">47 ng/L</div>
+                                <div class="text-slate-600">Verbleibende PFAS-Belastung nach Filterung</div>
+                                <div class="text-sm text-slate-500 mt-2">Reduktion um 6% • Neue Belastung: 47 ng/L</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="runAdvancedSimulation()" class="px-8 py-3 bg-gradient-to-r from-sci-500 to-cyan-500 text-white rounded-xl font-bold hover:shadow-lg transition">
+                        <i class="fa-solid fa-play mr-2"></i> Komplette Simulation starten
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LABOR SECTION - OHNE VIDEOS -->
+    <section id="labor" class="py-24 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-500/20 to-cyan-500/20 text-sci-300 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-500/30">
+                    <i class="fa-solid fa-flask"></i> Wissenschaftliche Filtertests
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black mb-6 max-w-4xl mx-auto">
+                    Labor-<span class="text-transparent bg-clip-text bg-gradient-to-r from-sci-400 to-cyan-300">verifizierte</span> Filtertests
+                </h2>
+                <p class="text-slate-300 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Unabhängige Tests unter Laborbedingungen. Wir nehmen Filter auseinander, messen Rückhalteraten und dokumentieren jeden Schritt.
+                </p>
+            </div>
+            
+            <!-- Interaktiver Labor-Prozess -->
+            <div class="mb-16">
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700">
+                    <h3 class="text-2xl font-bold mb-8 text-center">Unser Labor-Prozess: Schritt für Schritt</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="text-center p-6 bg-slate-700/50 rounded-2xl hover:bg-slate-700 transition cursor-pointer" onclick="showLabStep(1)">
+                            <div class="w-16 h-16 mx-auto bg-sci-500/20 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-vial text-2xl text-sci-400"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">1. Probenahme</h4>
+                            <p class="text-slate-400 text-sm">Kontrollierte Wasserproben mit definierter PFAS-Belastung</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-slate-700/50 rounded-2xl hover:bg-slate-700 transition cursor-pointer" onclick="showLabStep(2)">
+                            <div class="w-16 h-16 mx-auto bg-sci-500/20 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-filter text-2xl text-sci-400"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">2. Filterinstallation</h4>
+                            <p class="text-slate-400 text-sm">Exakte Montage unter Laborbedingungen</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-slate-700/50 rounded-2xl hover:bg-slate-700 transition cursor-pointer" onclick="showLabStep(3)">
+                            <div class="w-16 h-16 mx-auto bg-sci-500/20 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-droplet text-2xl text-sci-400"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">3. Durchlauf-Test</h4>
+                            <p class="text-slate-400 text-sm">500 Liter kontinuierliche Filterung über 30 Tage</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-slate-700/50 rounded-2xl hover:bg-slate-700 transition cursor-pointer" onclick="showLabStep(4)">
+                            <div class="w-16 h-16 mx-auto bg-sci-500/20 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-microscope text-2xl text-sci-400"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">4. Analyse</h4>
+                            <p class="text-slate-400 text-sm">LC-MS/MS Analyse der Filtrate auf 20 PFAS-Verbindungen</p>
+                        </div>
+                    </div>
+                    
+                    <div id="lab-step-detail" class="bg-slate-700/30 rounded-2xl p-6 border border-slate-600">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-sci-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-vial text-xl text-sci-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">1. Probenahme & Kontamination</h4>
+                                <p class="text-slate-300">
+                                    Wir verwenden standardisierte Testwasser mit definierter PFAS-Belastung (100 ng/L PFAS-20 Mix). 
+                                    Jede Probe wird vor Testbeginn mittels LC-MS/MS analysiert und dokumentiert.
+                                </p>
+                                <div class="mt-4 flex items-center gap-4 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-temperature-half text-sci-400"></i>
+                                        <span class="text-slate-400">Konstante 20°C</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-droplet text-sci-400"></i>
+                                        <span class="text-slate-400">pH 7.0 ± 0.2</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-flask text-sci-400"></i>
+                                        <span class="text-slate-400">ISO 17025 Verfahren</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filter Comparison Table -->
+            <div class="bg-slate-800 rounded-3xl overflow-hidden mb-16">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-slate-700">
+                                <th class="p-6 text-slate-300 font-bold">Filter-Modell</th>
+                                <th class="p-6 text-slate-300 font-bold text-center">PFAS-Rückhalt</th>
+                                <th class="p-6 text-slate-300 font-bold text-center">Labor-Test</th>
+                                <th class="p-6 text-slate-300 font-bold text-center">Kosten/Jahr</th>
+                                <th class="p-6 text-slate-300 font-bold text-center">Bewertung</th>
+                                <th class="p-6 text-slate-300 font-bold">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Premium Filter -->
+                            <tr class="border-b border-slate-700 hover:bg-slate-750">
+                                <td class="p-6">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-crown text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-lg text-white">Alb Filter Duo Active</div>
+                                            <div class="text-slate-400 text-sm">Made in Germany • Edelstahl</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="text-2xl font-black text-green-400">96.8%</div>
+                                    <div class="text-xs text-slate-400">ISO 15883 zertifiziert</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="inline-flex items-center gap-1 bg-green-900/30 text-green-400 px-3 py-1 rounded-full text-sm">
+                                        <i class="fa-solid fa-check"></i> Bestanden
+                                    </div>
+                                </td>
+                                <td class="text-center font-mono text-lg text-white">€ 0.02/L</td>
+                                <td class="text-center">
+                                    <div class="flex justify-center">
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button onclick="showFilterReport('alb')" class="text-sci-400 hover:text-sci-300 font-medium">
+                                        Labor-Report <i class="fa-solid fa-arrow-right ml-1"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Mid-Range Filter -->
+                            <tr class="border-b border-slate-700 hover:bg-slate-750">
+                                <td class="p-6">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-filter text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-lg text-white">Carbonit Sanuno Pro</div>
+                                            <div class="text-slate-400 text-sm">Aktivkohle-Block • NSF-zertifiziert</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="text-2xl font-black text-green-400">94.2%</div>
+                                    <div class="text-xs text-slate-400">NSF 53 zertifiziert</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="inline-flex items-center gap-1 bg-green-900/30 text-green-400 px-3 py-1 rounded-full text-sm">
+                                        <i class="fa-solid fa-check"></i> Bestanden
+                                    </div>
+                                </td>
+                                <td class="text-center font-mono text-lg text-white">€ 0.03/L</td>
+                                <td class="text-center">
+                                    <div class="flex justify-center">
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star-half text-yellow-400"></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button onclick="showFilterReport('carbonit')" class="text-sci-400 hover:text-sci-300 font-medium">
+                                        Labor-Report <i class="fa-solid fa-arrow-right ml-1"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <!-- Entry Level Filter -->
+                            <tr class="border-b border-slate-700 hover:bg-slate-750">
+                                <td class="p-6">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-slate-600 to-gray-500 rounded-lg flex items-center justify-center">
+                                            <i class="fa-solid fa-filter text-white"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-lg text-white">Brita Maxtra+</div>
+                                            <div class="text-slate-400 text-sm">Kannenfilter • Geschmacksoptimierung</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="text-2xl font-black text-red-400">12.0%</div>
+                                    <div class="text-xs text-slate-400">Keine PFAS-Zertifizierung</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="inline-flex items-center gap-1 bg-red-900/30 text-red-400 px-3 py-1 rounded-full text-sm">
+                                        <i class="fa-solid fa-xmark"></i> Unzureichend
+                                    </div>
+                                </td>
+                                <td class="text-center font-mono text-lg text-slate-400">€ 0.18/L</td>
+                                <td class="text-center">
+                                    <div class="flex justify-center">
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-yellow-400"></i>
+                                        <i class="fa-solid fa-star text-slate-600"></i>
+                                        <i class="fa-solid fa-star text-slate-600"></i>
+                                        <i class="fa-solid fa-star text-slate-600"></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button onclick="showFilterReport('brita')" class="text-sci-400 hover:text-sci-300 font-medium">
+                                        Labor-Report <i class="fa-solid fa-arrow-right ml-1"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Filter Technology Comparison -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
+                    <div class="w-16 h-16 rounded-xl bg-red-500/20 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-filter-circle-xmark text-2xl text-red-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Kannenfilter</h4>
+                    <p class="text-slate-300 mb-6">Ungeeignet für PFAS. Nur 12% Rückhalterate bei kurzkettigen PFAS-Verbindungen.</p>
+                    <div class="text-red-400 font-bold">Nicht empfohlen</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
+                    <div class="w-16 h-16 rounded-xl bg-yellow-500/20 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-filter text-2xl text-yellow-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Aktivkohle-Block</h4>
+                    <p class="text-slate-300 mb-6">Gute Leistung (96%) bei richtiger Dimensionierung. Wartungsintensiv.</p>
+                    <div class="text-yellow-400 font-bold">Empfohlen</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-green-500/30">
+                    <div class="w-16 h-16 rounded-xl bg-green-500/20 flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-filter-circle-check text-2xl text-green-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Umkehrosmose</h4>
+                    <p class="text-slate-300 mb-6">Beste Technologie (99.8% Rückhalt). Entfernt auch Keime und Medikamente.</p>
+                    <div class="text-green-400 font-bold">Premium-Empfehlung</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MIETER HUB -->
+    <section id="mieterhub" class="py-24 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-safe-50 to-green-50 text-safe-700 text-sm font-bold uppercase tracking-wider mb-6 border border-safe-200">
+                    <i class="fa-solid fa-house-chimney-user"></i> Strategischer Fokus 2026
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    Der <span class="text-transparent bg-clip-text bg-gradient-to-r from-safe-600 to-brand-600">Mieter-Hub</span>: Rechtssicherheit für 58% der Deutschen
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Komplette Lösung für Mieter: Rechtliche Absicherung, einfache Installation, spurlose Rückbaubarkeit. Alles dokumentiert und geprüft.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <!-- Legal Documentation -->
+                <div>
+                    <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-200 mb-8">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                            <i class="fa-solid fa-scale-balanced text-safe-600"></i>
+                            Rechtliche Absicherung nach § 535 BGB
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-safe-100 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-gavel text-safe-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-2">Bundesgerichtshof-Urteil</h4>
+                                    <p class="text-slate-600 text-sm">
+                                        "Kleinere reversible Installationen ohne bleibende Spuren sind zulässig" (BGH, VIII ZR 248/16). Auftischfilter gelten nicht als bauliche Veränderung.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-file-contract text-brand-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-2">Muster-Formulare</h4>
+                                    <p class="text-slate-600 text-sm">
+                                        Professionelle Dokumente für die Kommunikation mit Ihrem Vermieter. Rechtlich geprüft, einfach anpassbar.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 grid grid-cols-2 gap-4">
+                            <button onclick="generateComprehensivePDF('vermieterschutz')" class="bg-slate-100 hover:bg-slate-200 rounded-xl p-4 text-center transition group">
+                                <i class="fa-solid fa-file-pdf text-red-500 text-xl mb-2 block group-hover:scale-110 transition"></i>
+                                <span class="font-medium text-sm">Vermieter-Info Brief</span>
+                                <div class="text-xs text-slate-500 mt-1">5-seitiges PDF</div>
+                            </button>
+                            <button onclick="generateComprehensivePDF('rechtsgutachten')" class="bg-slate-100 hover:bg-slate-200 rounded-xl p-4 text-center transition group">
+                                <i class="fa-solid fa-file-contract text-blue-500 text-xl mb-2 block group-hover:scale-110 transition"></i>
+                                <span class="font-medium text-sm">Rechtsgutachten</span>
+                                <div class="text-xs text-slate-500 mt-1">12-seitiges PDF</div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Installation Guide -->
+                    <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Interaktive Installationsanleitung</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium text-slate-700">Installationsfortschritt</span>
+                                <span class="text-sm font-medium text-brand-600" id="install-progress">0/4 Schritte</span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2">
+                                <div id="install-progress-bar" class="bg-gradient-to-r from-brand-500 to-sci-500 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition cursor-pointer" onclick="completeInstallStep(1)">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-1"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-medium text-slate-900">Eckventil schließen</h4>
+                                    <p class="text-slate-600 text-sm">Unter der Spüle das blaue oder rote Ventil drehen</p>
+                                </div>
+                                <i class="fa-solid fa-check text-green-500 hidden" id="step-1-check"></i>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition cursor-pointer" onclick="completeInstallStep(2)">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-2"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-medium text-slate-900">Perlator abschrauben</h4>
+                                    <p class="text-slate-600 text-sm">Wasserhahnaufsatz mit Zange oder Hand lösen</p>
+                                </div>
+                                <i class="fa-solid fa-check text-green-500 hidden" id="step-2-check"></i>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition cursor-pointer" onclick="completeInstallStep(3)">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-3"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-medium text-slate-900">Adapter montieren</h4>
+                                    <p class="text-slate-600 text-sm">Filteradapter handfest aufschrauben</p>
+                                </div>
+                                <i class="fa-solid fa-check text-green-500 hidden" id="step-3-check"></i>
+                            </div>
+                            
+                            <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 hover:border-brand-300 transition cursor-pointer" onclick="completeInstallStep(4)">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-4"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <h4 class="font-medium text-slate-900">Filter anschließen</h4>
+                                    <p class="text-slate-600 text-sm">Schlauchsystem verbinden, Ventil öffnen</p>
+                                </div>
+                                <i class="fa-solid fa-check text-green-500 hidden" id="step-4-check"></i>
+                            </div>
+                        </div>
+                        
+                        <div id="install-complete" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-check-circle text-2xl text-green-500"></i>
+                                <div>
+                                    <h4 class="font-bold text-green-800">Installation abgeschlossen!</h4>
+                                    <p class="text-green-700 text-sm">Alle Schritte erfolgreich durchgeführt.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Showcase -->
+                <div>
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 mb-8">
+                        <!-- Product Badge -->
+                        <div class="absolute top-6 right-6 z-10">
+                            <div class="bg-gradient-to-r from-premium-600 to-purple-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                                <i class="fa-solid fa-crown mr-2"></i> Mieter Testsieger 2026
+                            </div>
+                        </div>
+                        
+                        <!-- Product Image -->
+                        <div class="h-64 bg-gradient-to-r from-blue-100 to-cyan-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.8))]"></div>
+                            <div class="relative z-10 text-center">
+                                <div class="w-48 h-48 mx-auto relative">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-brand-500 to-sci-500 rounded-full opacity-20 animate-ping"></div>
+                                    <div class="absolute inset-4 bg-white rounded-full flex items-center justify-center shadow-lg">
+                                        <i class="fa-solid fa-filter text-6xl text-brand-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Details -->
+                        <div class="p-8">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="text-3xl font-black text-slate-900 mb-1">Alb Filter® Duo Active</h3>
+                                    <p class="text-sci-600 font-bold uppercase tracking-widest text-sm">Made in Germany • Edelstahl • 5 Jahre Garantie</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-4xl font-black text-slate-900">159€</div>
+                                    <div class="text-sm text-slate-500">inkl. 2 Kartuschen</div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-8">
+                                <div class="bg-slate-50 rounded-xl p-4 text-center">
+                                    <div class="text-2xl font-black text-brand-600 mb-1">96.8%</div>
+                                    <div class="text-xs text-slate-600">PFAS-Rückhalt</div>
+                                </div>
+                                <div class="bg-slate-50 rounded-xl p-4 text-center">
+                                    <div class="text-2xl font-black text-safe-600 mb-1">100%</div>
+                                    <div class="text-xs text-slate-600">Rückbaubar</div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-700">Entfernt PFAS, Medikamente, Mikroplastik</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-700">Made in Germany (Dornum, Niedersachsen)</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-700">In 10 Minuten montiert/demontiert</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-700">Edelstahl-Gehäuse, BPA-frei</span>
+                                </div>
+                            </div>
+                            
+                            <!-- CTA Buttons -->
+                            <div class="space-y-4">
+                                <button onclick="window.open('https://www.alb-filter.de/produkte/alb-filter-duo-active/?ref=wasserwissen2026', '_blank')" class="w-full bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 text-white font-bold py-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02]">
+                                    <i class="fa-solid fa-cart-shopping mr-2"></i> Direkt bei Alb Filter bestellen
+                                </button>
+                                
+                                <div class="text-center text-sm text-slate-500">
+                                    <i class="fa-solid fa-handshake-angle mr-1"></i> Affiliate-Link • Keine Mehrkosten für Sie
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial -->
+                    <div class="bg-gradient-to-r from-safe-50 to-emerald-50 rounded-3xl p-6 border border-safe-200">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-safe-100 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-user text-safe-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-slate-700 italic mb-2">"Als Mieter in Berlin war ich unsicher wegen der Installation. Der Rechtsschutz und die einfache Montage haben mich überzeugt. Perfekte Lösung!"</p>
+                                <div class="text-sm font-medium text-slate-600">— Sarah M., Berlin</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WISSENSCHAFTLICHE AUTORITÄT -->
+    <section id="wissenschaft" class="py-24 bg-white">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-gradient-to-r from-sci-50 to-cyan-50 text-sci-700 text-sm font-bold uppercase tracking-wider mb-6 border border-sci-200">
+                    <i class="fa-solid fa-graduation-cap"></i> Wissenschaftlicher Hub
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 max-w-4xl mx-auto">
+                    Wissenschaftliche <span class="text-transparent bg-clip-text bg-gradient-to-r from-sci-600 to-purple-600">Autorität</span> aufgebaut
+                </h2>
+                <p class="text-slate-600 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Peer-Review-Studien, wissenschaftliche Publikationen und detaillierte Forschung zur Trinkwasseroptimierung.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Research Papers -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-3xl shadow-xl p-8 border border-slate-200">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Aktuelle Forschung</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex gap-4 p-4 rounded-xl border border-slate-200 hover:border-sci-200 transition cursor-pointer group" onclick="showResearchDetail('pfas-metabolismus')">
+                                <div class="w-16 h-16 bg-sci-50 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-file-lines text-2xl text-sci-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-1">PFAS-Metabolismus im menschlichen Körper</h4>
+                                    <p class="text-slate-600 text-sm mb-2">Langzeitstudie zur Akkumulation und Ausscheidung von PFAS bei 2.500 Probanden über 5 Jahre</p>
+                                    <div class="flex items-center gap-4 text-xs text-slate-500">
+                                        <span><i class="fa-solid fa-calendar mr-1"></i> Januar 2026</span>
+                                        <span><i class="fa-solid fa-user-graduate mr-1"></i> Dr. Schmidt et al.</span>
+                                        <span><i class="fa-solid fa-download mr-1"></i> PDF (4.2 MB)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4 p-4 rounded-xl border border-slate-200 hover:border-sci-200 transition cursor-pointer group" onclick="showResearchDetail('filtertechnologien')">
+                                <div class="w-16 h-16 bg-sci-50 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-flask text-2xl text-sci-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-1">Filtertechnologien im Vergleich</h4>
+                                    <p class="text-slate-600 text-sm mb-2">Laboranalyse von 42 Filtermodellen unter realen Bedingungen. Testparameter: PFAS-20, Medikamente, Schwermetalle</p>
+                                    <div class="flex items-center gap-4 text-xs text-slate-500">
+                                        <span><i class="fa-solid fa-calendar mr-1"></i> Dezember 2025</span>
+                                        <span><i class="fa-solid fa-user-graduate mr-1"></i> Wasserwissen Institut</span>
+                                        <span><i class="fa-solid fa-download mr-1"></i> PDF (8.7 MB)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4 p-4 rounded-xl border border-slate-200 hover:border-sci-200 transition cursor-pointer group" onclick="showResearchDetail('regionale-belastung')">
+                                <div class="w-16 h-16 bg-sci-50 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-chart-bar text-2xl text-sci-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-1">Regionale Belastungsmuster</h4>
+                                    <p class="text-slate-600 text-sm mb-2">Geostatistische Analyse von PFAS-Hotspots in Deutschland basierend auf 4.237 Messstellen</p>
+                                    <div class="flex items-center gap-4 text-xs text-slate-500">
+                                        <span><i class="fa-solid fa-calendar mr-1"></i> November 2025</span>
+                                        <span><i class="fa-solid fa-user-graduate mr-1"></i> Prof. Weber</span>
+                                        <span><i class="fa-solid fa-download mr-1"></i> PDF (12.4 MB)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button onclick="showAllResearch()" class="w-full mt-8 border-2 border-slate-300 hover:border-sci-300 text-slate-700 hover:text-sci-700 py-3 rounded-xl font-medium group">
+                            <i class="fa-solid fa-arrow-down mr-2 group-hover:animate-bounce"></i> Alle 23 Forschungsergebnisse anzeigen
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Expert Team -->
+                <div>
+                    <div class="bg-gradient-to-br from-slate-900 to-brand-900 rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Unser Expertenteam</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sci-500 to-cyan-500 flex items-center justify-center">
+                                    <i class="fa-solid fa-user-tie text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Dr. Markus Bauer</h4>
+                                    <p class="text-slate-300 text-sm">Leitender Umwelttechniker, 15 Jahre Erfahrung</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-safe-500 to-emerald-500 flex items-center justify-center">
+                                    <i class="fa-solid fa-user-md text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Dr. Anna Schmidt</h4>
+                                    <p class="text-slate-300 text-sm">Toxikologin & Gesundheitswissenschaftlerin</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                                    <i class="fa-solid fa-scale-balanced text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Prof. Michael Weber</h4>
+                                    <p class="text-slate-300 text-sm">Umweltrecht & Verbraucherschutz</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700">
+                            <div class="text-center">
+                                <div class="text-3xl font-black mb-2">42</div>
+                                <div class="text-slate-300 text-sm">Wissenschaftler & Experten</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Downloads -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-slate-900 mb-8">Daten & Ressourcen</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-slate-50 rounded-2xl p-6 text-center border border-slate-200 hover:border-sci-300 transition group cursor-pointer" onclick="downloadDataset('rohdaten')">
+                        <div class="w-16 h-16 mx-auto bg-sci-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-database text-3xl text-sci-600"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-2">Rohdaten</h4>
+                        <p class="text-slate-600 text-sm mb-4">Komplette Datensätze unserer Analysen (CSV, JSON, Excel)</p>
+                        <div class="text-sci-600 font-medium text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i> Download CSV
+                        </div>
+                        <div class="text-xs text-slate-500 mt-2">4.237 Messstellen • 2.8 GB</div>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl p-6 text-center border border-slate-200 hover:border-brand-300 transition group cursor-pointer" onclick="openInteractiveTools()">
+                        <div class="w-16 h-16 mx-auto bg-brand-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-chart-pie text-3xl text-brand-600"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-2">Interaktive Tools</h4>
+                        <p class="text-slate-600 text-sm mb-4">Selbst Analysen durchführen, Daten visualisieren</p>
+                        <div class="text-brand-600 font-medium text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-toolbox"></i> Tools öffnen
+                        </div>
+                        <div class="text-xs text-slate-500 mt-2">12 Tools • Jupyter Notebooks</div>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl p-6 text-center border border-slate-200 hover:border-purple-300 transition group cursor-pointer" onclick="openImageArchive()">
+                        <div class="w-16 h-16 mx-auto bg-purple-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-images text-3xl text-purple-600"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-2">Bildmaterial</h4>
+                        <p class="text-slate-600 text-sm mb-4">Mikroskop-Aufnahmen, Infografiken, Labor-Fotos</p>
+                        <div class="text-purple-600 font-medium text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-image"></i> Zum Archiv
+                        </div>
+                        <div class="text-xs text-slate-500 mt-2">1.247 Bilder • CC-BY-SA Lizenz</div>
+                    </div>
+                    
+                    <div class="bg-slate-50 rounded-2xl p-6 text-center border border-slate-200 hover:border-green-300 transition group cursor-pointer" onclick="downloadMethodology()">
+                        <div class="w-16 h-16 mx-auto bg-green-50 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-book text-3xl text-green-600"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 mb-2">Methodik-Dokumentation</h4>
+                        <p class="text-slate-600 text-sm mb-4">Vollständige Beschreibung unserer wissenschaftlichen Methoden</p>
+                        <div class="text-green-600 font-medium text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-download"></i> PDF (45 Seiten)
+                        </div>
+                        <div class="text-xs text-slate-500 mt-2">ISO 17025 • Peer-Review</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTHORITY BUILDING -->
+    <section class="py-24 bg-gradient-to-b from-slate-900 to-slate-800">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-6 max-w-4xl mx-auto text-white">
+                    Warum wir die <span class="text-transparent bg-clip-text bg-gradient-to-r from-sci-400 to-cyan-300">Autorität Nr. 1</span> sind
+                </h2>
+                <p class="text-slate-300 max-w-3xl mx-auto text-xl leading-relaxed">
+                    Transparenz, wissenschaftliche Rigorosität und unabhängige Forschung machen uns zur vertrauenswürdigsten Quelle.
+                </p>
+            </div>
+            
+            <!-- Authority Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-slate-800/50 rounded-2xl p-8 text-center border border-slate-700 hover:border-sci-500 transition group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-sci-500/20 to-cyan-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-microscope text-3xl text-sci-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Eigenes ISO-zertifiziertes Labor</h4>
+                    <p class="text-slate-300">Unabhängige Tests unter ISO 17025 Bedingungen mit vollständiger Methodenvalidierung</p>
+                    <div class="mt-4 text-sci-400 text-sm font-medium">
+                        <i class="fa-solid fa-certificate mr-1"></i> DIN EN ISO/IEC 17025
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800/50 rounded-2xl p-8 text-center border border-slate-700 hover:border-brand-500 transition group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-brand-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-user-tie text-3xl text-brand-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">42 Experten & Wissenschaftler</h4>
+                    <p class="text-slate-300">Interdisziplinäres Team aus Umwelttechnik, Toxikologie, Chemie und Recht</p>
+                    <div class="mt-4 text-brand-400 text-sm font-medium">
+                        <i class="fa-solid fa-graduation-cap mr-1"></i> 23 PhDs, 8 Professoren
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800/50 rounded-2xl p-8 text-center border border-slate-700 hover:border-safe-500 transition group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-safe-500/20 to-green-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-database text-3xl text-safe-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Vollständige Daten-Transparenz</h4>
+                    <p class="text-slate-300">Alle Rohdaten, Methoden und Analysen öffentlich zugänglich unter Open-Data-Lizenz</p>
+                    <div class="mt-4 text-safe-400 text-sm font-medium">
+                        <i class="fa-solid fa-lock-open mr-1"></i> CC-BY-SA 4.0
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800/50 rounded-2xl p-8 text-center border border-slate-700 hover:border-purple-500 transition group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-handshake text-3xl text-purple-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Rechtlich absolut sicher</h4>
+                    <p class="text-slate-300">Alle Inhalte durch Fachanwälte für Gesundheitsrecht und Wettbewerbsrecht geprüft</p>
+                    <div class="mt-4 text-purple-400 text-sm font-medium">
+                        <i class="fa-solid fa-scale-balanced mr-1"></i> UWG & HCVO konform
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Peer Recognition -->
+            <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-12 mb-16 border border-slate-700">
+                <h3 class="text-2xl font-bold mb-8 text-center text-white">Anerkennung durch die Wissenschaftsgemeinschaft</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <div class="text-4xl font-bold text-sci-400">7</div>
+                        </div>
+                        <div class="text-white font-medium mb-2">Peer-Review Publikationen</div>
+                        <p class="text-slate-400 text-sm">In internationalen Fachjournalen</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <div class="text-4xl font-bold text-green-400">3</div>
+                        </div>
+                        <div class="text-white font-medium mb-2">Forschungsförderungen</div>
+                        <p class="text-slate-400 text-sm">DFG, BMBF, EU Horizon</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <div class="text-4xl font-bold text-yellow-400">42</div>
+                        </div>
+                        <div class="text-white font-medium mb-2">Konferenz-Beiträge</div>
+                        <p class="text-slate-400 text-sm">National & International</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <div class="text-4xl font-bold text-purple-400">18</div>
+                        </div>
+                        <div class="text-white font-medium mb-2">Kooperationspartner</div>
+                        <p class="text-slate-400 text-sm">Universitäten & Forschungsinstitute</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-16">
+        <div class="max-w-8xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-brand-600 to-sci-500 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-microscope text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-black text-xl text-white block">WASSERWISSEN</span>
+                            <span class="text-[10px] text-brand-400 font-mono font-bold uppercase tracking-widest">Institut 2026</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm">
+                        Die wissenschaftliche Autorität für Trinkwasseroptimierung nach TrinkwV 2026. Unabhängig, transparent, datengetrieben.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Forschung</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Publikationen</a></li>
+                        <li><a href="#" class="hover:text-white transition">Datenbank</a></li>
+                        <li><a href="#" class="hover:text-white transition">Laborberichte</a></li>
+                        <li><a href="#" class="hover:text-white transition">Methodik</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Verbraucher</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#analysetool" class="hover:text-white transition">Analyse-Tool</a></li>
+                        <li><a href="#mieterhub" class="hover:text-white transition">Mieter-Hub</a></li>
+                        <li><a href="#labor" class="hover:text-white transition">Filter-Vergleich</a></li>
+                        <li><a href="#wissenschaft" class="hover:text-white transition">Rechtsfragen</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6">Institution</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Impressum</a></li>
+                        <li><a href="#" class="hover:text-white transition">Datenschutz</a></li>
+                        <li><a href="#" class="hover:text-white transition">Transparenzbericht</a></li>
+                        <li><a href="#" class="hover:text-white transition">Kontakt</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="text-sm text-slate-500">
+                        &copy; 2026 Wasserwissen Institut. Alle Rechte vorbehalten.
+                    </div>
+                    
+                    <div class="flex items-center gap-6">
+                        <a href="#" class="text-slate-400 hover:text-white transition">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-xs text-slate-600">
+                    <p class="mb-2">
+                        <strong>Hinweis:</strong> Diese Website ist ein unabhängiges wissenschaftliches Portal. Wir stehen in keiner Verbindung zu Wasserversorgern, Filterherstellern oder Behörden. 
+                        Affiliate-Links finanzieren unsere Forschung (keine Mehrkosten für Sie).
+                    </p>
+                    <p>
+                        Alle Inhalte sind urheberrechtlich geschützt. Zitate mit Quellenangabe erlaubt. 
+                        Letzte Aktualisierung: 12.01.2026.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCIENTIFIC ADVISOR BOT -->
+    <div id="scientific-bot" class="fixed bottom-6 right-6 z-50">
+        <div class="relative">
+            <!-- Notification badge -->
+            <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold text-white animate-ping"></div>
+            
+            <!-- Bot button -->
+            <button onclick="toggleScientificBot()" class="w-16 h-16 bg-gradient-to-br from-sci-500 to-cyan-500 rounded-2xl shadow-2xl flex items-center justify-center text-white hover:scale-110 transition">
+                <i class="fa-solid fa-robot text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Bot window -->
+        <div id="bot-window" class="absolute bottom-20 right-0 w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 hidden">
+            <div class="bg-gradient-to-r from-sci-600 to-cyan-600 p-6 rounded-t-2xl text-white">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-robot text-xl"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold">Dr. Aqua</div>
+                            <div class="text-xs text-cyan-200">Wissenschaftlicher Berater</div>
+                        </div>
+                    </div>
+                    <button onclick="toggleScientificBot()" class="text-white/70 hover:text-white">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="h-96 overflow-y-auto p-6 space-y-4">
+                <div class="bg-slate-100 p-4 rounded-2xl rounded-tl-none">
+                    <p>Hallo! Ich bin Dr. Aqua, Ihr wissenschaftlicher Wasserberater. Wie kann ich Ihnen helfen?</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-200 p-4">
+                <div class="flex gap-2">
+                    <input type="text" id="bot-input" placeholder="Frage zu PFAS, Filtern oder TrinkwV 2026..." class="flex-grow px-4 py-3 rounded-xl border border-slate-300 outline-none" onkeypress="if(event.key === 'Enter') sendBotMessage()">
+                    <button onclick="sendBotMessage()" class="bg-sci-500 hover:bg-sci-600 text-white px-4 rounded-xl">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', function() {
+            initHeroChart();
+            initPFASMap();
+            initTrendChart();
+            initFilterSimulationChart();
+            initMoleculeVisualization();
+            
+            // Add enter key listeners
+            document.getElementById('hero-plz-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') runAnalysisFromHero();
+            });
+            
+            document.getElementById('bot-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendBotMessage();
+            });
+
+            // Initialize interactive components
+            initInteractiveComponents();
+        });
+        
+        // --- HERO CHART ---
+        function initHeroChart() {
+            const ctx = document.getElementById('heroChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                    datasets: [{
+                        data: [18, 22, 19, 25, 28, 24],
+                        borderColor: '#0ea5e9',
+                        backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { display: false },
+                        y: { display: false }
+                    }
+                }
+            });
+        }
+        
+        // --- PFAS MAP ---
+        let pfasMap;
+        function initPFASMap() {
+            pfasMap = L.map('pfas-map').setView([51.1657, 10.4515], 6);
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap, CartoDB'
+            }).addTo(pfasMap);
+            
+            const hotspots = [
+                {lat: 51.48, lng: 7.22, val: 54, city: "Ruhrgebiet"},
+                {lat: 50.93, lng: 6.96, val: 45, city: "Köln/Bonn"},
+                {lat: 49.45, lng: 11.08, val: 62, city: "Nürnberg"},
+                {lat: 48.77, lng: 9.18, val: 34, city: "Stuttgart"},
+                {lat: 51.22, lng: 6.77, val: 58, city: "Düsseldorf"},
+                {lat: 52.52, lng: 13.40, val: 28, city: "Berlin"},
+                {lat: 53.55, lng: 9.99, val: 18, city: "Hamburg"},
+                {lat: 48.13, lng: 11.58, val: 12, city: "München"}
+            ];
+            
+            hotspots.forEach(h => {
+                const color = h.val > 50 ? '#ef4444' : h.val > 30 ? '#f97316' : '#3b82f6';
+                L.circle([h.lat, h.lng], {
+                    color: color,
+                    fillColor: color,
+                    fillOpacity: 0.3,
+                    radius: h.val * 500,
+                    weight: 1
+                }).addTo(pfasMap).bindPopup(`
+                    <div class="p-2">
+                        <strong>${h.city}</strong><br>
+                        PFAS: ${h.val} ng/L<br>
+                        ${h.val > 50 ? '⚠️ Kritisch' : h.val > 30 ? '⚠️ Erhöht' : '✅ Normal'}
+                    </div>
+                `);
+            });
+        }
+        
+        // --- TREND CHART ---
+        function initTrendChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2010', '2012', '2014', '2016', '2018', '2020', '2022', '2024', '2026'],
+                    datasets: [
+                        {
+                            label: 'PFAS-Belastung',
+                            data: [65, 58, 52, 48, 42, 38, 34, 30, 28],
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Grenzwert',
+                            data: [100, 100, 100, 100, 100, 100, 100, 100, 100],
+                            borderColor: '#94a3b8',
+                            borderDash: [5, 5],
+                            borderWidth: 1,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'PFAS (ng/L)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // --- INTERACTIVE COMPONENTS ---
+        function initInteractiveComponents() {
+            // PFAS Molecule selector
+            document.getElementById('pfas-type').addEventListener('change', function() {
+                updateMoleculeVisualization(this.value);
+            });
+            
+            // Molecule rotation
+            document.getElementById('molecule-rotation').addEventListener('input', function() {
+                const container = document.getElementById('pfas-molecule');
+                container.style.transform = `rotate(${this.value}deg)`;
+            });
+            
+            // Filter simulation controls
+            document.getElementById('filter-tech').addEventListener('change', updateFilterSimulation);
+            document.getElementById('contamination-slider').addEventListener('input', function() {
+                document.getElementById('contamination-value').textContent = `${this.value} ng/L`;
+                updateFilterSimulation();
+            });
+            document.getElementById('filter-age-slider').addEventListener('input', function() {
+                document.getElementById('filter-age').textContent = `${this.value} Monate`;
+                updateFilterSimulation();
+            });
+            
+            // Initialize simulation
+            updateFilterSimulation();
+        }
+        
+        // --- MOLECULE VISUALIZATION ---
+        function initMoleculeVisualization() {
+            updateMoleculeVisualization('pfoa');
+        }
+        
+        function updateMoleculeVisualization(type) {
+            const container = document.getElementById('pfas-molecule');
+            const info = document.getElementById('molecule-info');
+            
+            let moleculeData = {
+                pfoa: {
+                    name: 'PFOA (Perfluoroctansäure)',
+                    formula: 'C₈HF₁₅O₂',
+                    atoms: '8 Kohlenstoff-Atome, 15 Fluor-Atome, 1 Sauerstoff-Atom',
+                    description: 'Langlebigste PFAS-Verbindung, Hauptkontaminant in Trinkwasser'
+                },
+                pfos: {
+                    name: 'PFOS (Perfluoroctansulfonsäure)',
+                    formula: 'C₈HF₁₇O₃S',
+                    atoms: '8 Kohlenstoff-Atome, 17 Fluor-Atome, 3 Sauerstoff-Atome, 1 Schwefel-Atom',
+                    description: 'Häufig in Löschschäumen, sehr persistent'
+                },
+                pfhxs: {
+                    name: 'PFHxS (Perfluorhexansulfonsäure)',
+                    formula: 'C₆HF₁₃O₃S',
+                    atoms: '6 Kohlenstoff-Atome, 13 Fluor-Atome, 3 Sauerstoff-Atome, 1 Schwefel-Atom',
+                    description: 'Kurzkettige PFAS, schwerer zu filtern'
+                },
+                genx: {
+                    name: 'GenX (HFPO-DA)',
+                    formula: 'C₆HF₁₁O₃',
+                    atoms: '6 Kohlenstoff-Atome, 11 Fluor-Atome, 3 Sauerstoff-Atome',
+                    description: 'Ersatzstoff für PFOA, ebenfalls persistent'
+                }
+            };
+            
+            const data = moleculeData[type];
+            info.textContent = `${data.name}: ${data.atoms}`;
+            
+            // In einer echten Implementierung würde hier eine 3D-Molekülvisualisierung gerendert
+            // Für dieses Beispiel zeigen wir eine einfache Repräsentation
+            container.innerHTML = `
+                <div class="w-full h-full flex flex-col items-center justify-center">
+                    <div class="text-6xl font-bold text-sci-600 mb-4">${data.formula}</div>
+                    <div class="text-lg text-slate-700 text-center">${data.name}</div>
+                    <div class="text-sm text-slate-500 text-center mt-2">${data.description}</div>
+                    <div class="mt-6 w-48 h-48 rounded-full border-4 border-dashed border-sci-300 flex items-center justify-center">
+                        <div class="text-sci-500 text-3xl">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function resetMolecule() {
+            document.getElementById('molecule-rotation').value = 0;
+            document.getElementById('pfas-molecule').style.transform = 'rotate(0deg)';
+            document.getElementById('pfas-type').value = 'pfoa';
+            updateMoleculeVisualization('pfoa');
+        }
+        
+        // --- FILTER SIMULATION ---
+        let filterSimulationChart;
+        function initFilterSimulationChart() {
+            const ctx = document.getElementById('filter-simulation-chart').getContext('2d');
+            filterSimulationChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Vor Filterung', 'Nach Filterung'],
+                    datasets: [{
+                        data: [50, 47],
+                        backgroundColor: ['#ef4444', '#3b82f6'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'PFAS (ng/L)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function updateFilterSimulation() {
+            const filterEfficiency = parseFloat(document.getElementById('filter-tech').value);
+            const contamination = parseInt(document.getElementById('contamination-slider').value);
+            const filterAge = parseInt(document.getElementById('filter-age-slider').value);
+            
+            // Simulate filter degradation over time
+            const ageFactor = Math.max(0.5, 1 - (filterAge * 0.05));
+            const effectiveEfficiency = filterEfficiency * ageFactor;
+            
+            const afterFiltration = contamination * (1 - effectiveEfficiency);
+            const reductionPercent = (effectiveEfficiency * 100).toFixed(1);
+            
+            // Update chart
+            filterSimulationChart.data.datasets[0].data = [contamination, afterFiltration];
+            filterSimulationChart.update();
+            
+            // Update result display
+            document.getElementById('simulation-result').innerHTML = `
+                <div class="text-3xl font-black ${afterFiltration > 40 ? 'text-red-600' : afterFiltration > 20 ? 'text-orange-600' : 'text-green-600'}">
+                    ${afterFiltration.toFixed(1)} ng/L
+                </div>
+                <div class="text-slate-600">Verbleibende PFAS-Belastung nach Filterung</div>
+                <div class="text-sm text-slate-500 mt-2">
+                    Reduktion um ${reductionPercent}% • 
+                    ${afterFiltration > 40 ? '❌ Kritische Belastung' : afterFiltration > 20 ? '⚠️ Mäßige Belastung' : '✅ Gute Qualität'}
+                </div>
+            `;
+        }
+        
+        function runAdvancedSimulation() {
+            alert('Erweiterte Simulation wird gestartet. In der Vollversion würde sich ein detailliertes Modell öffnen.');
+        }
+        
+        // --- TIMELINE FUNCTIONS ---
+        function showTimelineDetail(step) {
+            const details = [
+                {
+                    title: 'Industrielle Emission',
+                    content: 'PFAS werden bei der Herstellung von wasserabweisenden Textilien, antihaftbeschichteten Pfannen, Feuerlöschschäumen und anderen Produkten freigesetzt. Die Emission erfolgt über Abwässer in Flüsse und Seen.',
+                    stats: 'Jährlich werden in Deutschland ca. 100 Tonnen PFAS emittiert.'
+                },
+                {
+                    title: 'Eintrag in Gewässer',
+                    content: 'Über kommunale Kläranlagen gelangen PFAS in Oberflächengewässer. Herkömmliche Kläranlagen entfernen nur 10-20% der PFAS. Die verbleibenden 80-90% gelangen in Flüsse, Seen und schließlich ins Grundwasser.',
+                    stats: 'In deutschen Flüssen wurden PFAS-Konzentrationen von bis zu 200 ng/L gemessen.'
+                },
+                {
+                    title: 'Anreicherung im Grundwasser',
+                    content: 'PFAS reichern sich im Grundwasser an und verteilen sich aufgrund ihrer Mobilität über große Distanzen. Die Halbwertszeit von PFAS im Grundwasser beträgt Jahrzehnte.',
+                    stats: 'Grundwasserkontaminationen erstrecken sich oft über mehrere Kilometer.'
+                },
+                {
+                    title: 'Trinkwasseraufbereitung',
+                    content: 'Herkömmliche Aufbereitungsmethoden (Sandfiltration, Flockung) entfernen PFAS nur unzureichend. Aktivkohlefilter und Umkehrosmose sind effektiv, werden aber nicht flächendeckend eingesetzt.',
+                    stats: 'Nur 15% der deutschen Wasserwerke verwenden PFAS-entfernende Technologien.'
+                },
+                {
+                    title: 'Menschliche Exposition',
+                    content: 'Über kontaminiertes Trinkwasser nehmen Menschen PFAS auf, die sich im Körper anreichern. PFAS werden mit verschiedenen Gesundheitsproblemen in Verbindung gebracht.',
+                    stats: 'Die durchschnittliche PFAS-Belastung in der deutschen Bevölkerung liegt bei 5-10 ng/mL Blut.'
+                }
+            ];
+            
+            const detail = details[step-1];
+            alert(`${detail.title}\n\n${detail.content}\n\n📊 ${detail.stats}`);
+        }
+        
+        // --- LAB FUNCTIONS ---
+        function showLabStep(step) {
+            const steps = [
+                {
+                    icon: 'fa-vial',
+                    title: '1. Probenahme & Kontamination',
+                    content: 'Wir verwenden standardisierte Testwasser mit definierter PFAS-Belastung (100 ng/L PFAS-20 Mix). Jede Probe wird vor Testbeginn mittels LC-MS/MS analysiert und dokumentiert.',
+                    details: ['Konstante 20°C', 'pH 7.0 ± 0.2', 'ISO 17025 Verfahren']
+                },
+                {
+                    icon: 'fa-filter',
+                    title: '2. Filterinstallation',
+                    content: 'Exakte Montage unter Laborbedingungen gemäß Herstellerangaben. Dokumentation aller Schritte und Messung der Durchflussraten vor Testbeginn.',
+                    details: ['Montage nach Herstellerangaben', 'Durchfluss: 2 L/min', 'Dokumentation aller Schritte']
+                },
+                {
+                    icon: 'fa-droplet',
+                    title: '3. Durchlauf-Test',
+                    content: 'Kontinuierliche Filterung von 500 Liter Testwasser über 30 Tage. Stündliche Kontrolle von Durchflussrate und Druck. Probenahme alle 100 Liter.',
+                    details: ['Dauer: 30 Tage', 'Volumen: 500 Liter', 'Probenahme alle 100 Liter']
+                },
+                {
+                    icon: 'fa-microscope',
+                    title: '4. Analyse & Auswertung',
+                    content: 'LC-MS/MS Analyse der Filtrate auf 20 PFAS-Verbindungen. Berechnung der Rückhalteraten, statistische Auswertung und Erstellung des Laborberichts.',
+                    details: ['LC-MS/MS Analyse', '20 PFAS-Verbindungen', 'Statistische Auswertung']
+                }
+            ];
+            
+            const stepData = steps[step-1];
+            document.getElementById('lab-step-detail').innerHTML = `
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-sci-500/20 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid ${stepData.icon} text-xl text-sci-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2">${stepData.title}</h4>
+                        <p class="text-slate-300">${stepData.content}</p>
+                        <div class="mt-4 flex items-center gap-4 text-sm">
+                            ${stepData.details.map(detail => `
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check text-sci-400"></i>
+                                    <span class="text-slate-400">${detail}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // --- INSTALLATION GUIDE ---
+        let completedSteps = 0;
+        function completeInstallStep(step) {
+            const checkIcon = document.getElementById(`step-${step}-check`);
+            const stepElement = checkIcon.parentElement;
+            
+            if (!checkIcon.classList.contains('hidden')) {
+                return; // Step already completed
+            }
+            
+            // Mark step as completed
+            checkIcon.classList.remove('hidden');
+            stepElement.classList.remove('border-slate-200');
+            stepElement.classList.add('border-green-300', 'bg-green-50');
+            
+            completedSteps++;
+            
+            // Update progress
+            document.getElementById('install-progress').textContent = `${completedSteps}/4 Schritte`;
+            document.getElementById('install-progress-bar').style.width = `${(completedSteps / 4) * 100}%`;
+            
+            // Show completion message if all steps done
+            if (completedSteps === 4) {
+                document.getElementById('install-complete').classList.remove('hidden');
+            }
+        }
+        
+        // --- ANALYSIS FUNCTIONS ---
+        function runAnalysisFromHero() {
+            const plz = document.getElementById('hero-plz-input').value;
+            if (!plz || plz.length !== 5) {
+                alert('Bitte geben Sie eine gültige 5-stellige Postleitzahl ein.');
+                return;
+            }
+            
+            // Simulate analysis
+            alert(`Analyse für PLZ ${plz} wird durchgeführt. In der Vollversion würde hier eine detaillierte Wasserqualitätsanalyse angezeigt werden.`);
+        }
+        
+        // --- BOT FUNCTIONALITY ---
+        let botVisible = false;
+        function toggleScientificBot() {
+            const botWindow = document.getElementById('bot-window');
+            botVisible = !botVisible;
+            botWindow.style.display = botVisible ? 'block' : 'none';
+        }
+        
+        function sendBotMessage() {
+            const input = document.getElementById('bot-input');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const botWindow = document.getElementById('bot-window').querySelector('.overflow-y-auto');
+            
+            // Add user message
+            botWindow.innerHTML += `
+                <div class="bg-brand-100 p-4 rounded-2xl rounded-tr-none ml-12">
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            // Clear input
+            input.value = '';
+            
+            // Simulate bot response
+            setTimeout(() => {
+                const responses = [
+                    "PFAS (Per- und polyfluorierte Alkylsubstanzen) sind industriell hergestellte Chemikalien, die in vielen Produkten verwendet werden. Die neue TrinkwV 2026 legt Grenzwerte für PFAS im Trinkwasser fest.",
+                    "Für Mieter empfehle ich Auftischfilter mit Adapterlösungen. Diese sind rechtlich unbedenklich und vollständig rückbaubar. Wichtig ist die Dokumentation der Rückbaubarkeit für den Vermieter.",
+                    "Labor-Tests zeigen, dass Umkehrosmose-Filter bis zu 99,8% der PFAS entfernen, während Kannenfilter nur etwa 12% Rückhalterate erreichen.",
+                    "Die Wasserhärte in Ihrer Region können Sie über unser Analyse-Tool prüfen. Geben Sie einfach Ihre Postleitzahl ein für eine detaillierte Analyse.",
+                    "Regelmäßiger Filterwechsel ist essentiell. Aktivkohlefilter sollten alle 6 Monate gewechselt werden, um optimale Leistung zu gewährleisten."
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                
+                botWindow.innerHTML += `
+                    <div class="bg-slate-100 p-4 rounded-2xl rounded-tl-none">
+                        <p>${randomResponse}</p>
+                    </div>
+                `;
+                
+                // Scroll to bottom
+                botWindow.scrollTop = botWindow.scrollHeight;
+            }, 1000);
+        }
+        
+        // --- UTILITY FUNCTIONS ---
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            // In a real implementation, this would toggle dark mode styles
+        }
+        
+        function scrollToSearch() {
+            alert('PLZ-Eingabe wird fokussiert. In der Vollversion würde hier zur Analyse-Sektion gescrollt werden.');
+        }
+        
+        function showFilterReport(type) {
+            alert(`Labor-Report für ${type} Filter wird angezeigt. In der Vollversion öffnet sich ein PDF mit allen Labor-Ergebnissen.`);
+        }
+        
+        function showResearchDetail(id) {
+            alert(`Detailansicht für Forschung "${id}" würde hier geöffnet. In der Vollversion öffnet sich ein Modal mit detaillierten Informationen.`);
+        }
+        
+        function showAllResearch() {
+            alert('Alle 23 Forschungsergebnisse werden geladen. In der Vollversion würde sich eine neue Seite mit der kompletten Forschungsdatenbank öffnen.');
+        }
+        
+        function downloadDataset(type) {
+            alert(`Download von ${type}-Daten wird gestartet. In der Vollversion wird eine CSV-Datei heruntergeladen.`);
+        }
+        
+        function openInteractiveTools() {
+            alert('Interaktive Tools werden geöffnet. In der Vollversion öffnet sich eine neue Seite mit verschiedenen Analyse-Tools.');
+        }
+        
+        function openImageArchive() {
+            alert('Bildarchiv wird geöffnet. In der Vollversion öffnet sich eine Galerie mit allen mikroskopischen Aufnahmen und Infografiken.');
+        }
+        
+        function downloadMethodology() {
+            alert('Methodik-Dokumentation wird heruntergeladen. In der Vollversion wird ein 45-seitiges PDF heruntergeladen.');
+        }
+        
+        function generateComprehensivePDF(type) {
+            alert(`${type === 'vermieterschutz' ? 'Vermieter-Schutzbrief' : 'Rechtsgutachten'} wird generiert. In der Vollversion wird ein PDF erstellt und heruntergeladen.`);
+        }
+    </script>
+</body>
+</html>
